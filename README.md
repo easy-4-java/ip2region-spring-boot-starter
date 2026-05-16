@@ -14,7 +14,7 @@ Spring Boot Starter For ip2region
 
 ``` xml
 <dependency>
-	<groupId>com.github.hiwepy</groupId>
+	<groupId>io.github.hiwepy</groupId>
 	<artifactId>ip2region-spring-boot-starter</artifactId>
 	<version>${project.version}</version>
 </dependency>
@@ -39,8 +39,8 @@ import java.io.IOException;
 
 import javax.annotation.PostConstruct;
 
-import com.github.hiwepy.ip2region.spring.boot.ext.RegionAddress;
-import com.github.hiwepy.ip2region.spring.boot.ext.RegionEnum;
+import io.github.hiwepy.ip2region.spring.boot.ext.RegionAddress;
+import io.github.hiwepy.ip2region.spring.boot.ext.RegionEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
