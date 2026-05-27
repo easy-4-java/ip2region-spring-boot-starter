@@ -1,4 +1,4 @@
-package com.github.hiwepy.ip2region.spring.boot.util;
+package io.github.hiwepy.ip2region.spring.boot.util;
 
 
 /**
