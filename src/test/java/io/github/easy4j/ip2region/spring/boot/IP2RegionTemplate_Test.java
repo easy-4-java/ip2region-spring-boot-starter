@@ -1,8 +1,8 @@
-package com.github.hiwepy.ip2region.spring.boot;
+package io.github.easy4j.ip2region.spring.boot;
 
-import com.github.hiwepy.ip2region.spring.boot.ext.RegionAddress;
-import com.github.hiwepy.ip2region.spring.boot.ext.RegionEnum;
-import com.github.hiwepy.ip2region.spring.boot.ext.XdbSearcher;
+import io.github.easy4j.ip2region.spring.boot.ext.RegionAddress;
+import io.github.easy4j.ip2region.spring.boot.ext.RegionEnum;
+import io.github.easy4j.ip2region.spring.boot.ext.XdbSearcher;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.context.event.annotation.BeforeTestMethod;
 
