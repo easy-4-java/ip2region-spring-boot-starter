@@ -90,6 +90,8 @@ Starter 自动装配以下 Bean：
 
 ### 6.2 配置
 
+**上游项目：** [ip2region](https://github.com/lionsoul2014/ip2region)。内置 IPv4 XDB 来自[官方 v3.18.0 数据文件](https://github.com/lionsoul2014/ip2region/blob/v3.18.0/data/ip2region_v4.xdb)，SHA-256：`8e31bbdccb5bf21028af10592d4312ec975da0bffa108c0c5d862a12190f9ad3`。新版字段顺序为 `国家|省份|城市|运营商|ISO 两位国家代码`；中国以外的国家名称为英文。旧版 XDB 的 `国家|地区|省份|城市|运营商` 记录仍可解析。
+
 ```yaml
 ip2region:
   enabled: true
