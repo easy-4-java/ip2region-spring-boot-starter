@@ -29,6 +29,8 @@
 
 ## 1. Positioning
 
+**Upstream project:** [ip2region](https://github.com/lionsoul2014/ip2region).
+
 **ip2region-spring-boot-starter** is a Spring Boot starter that integrates **ip2region** for applications using ip2region. It provides auto-configuration, property binding, and ready-to-use beans so that applications can consume ip2region capabilities with minimal setup.
 
 | Dimension | Description |

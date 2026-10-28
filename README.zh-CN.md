@@ -29,6 +29,8 @@
 
 ## 1. 项目定位
 
+**上游项目：** [ip2region](https://github.com/lionsoul2014/ip2region)。
+
 **ip2region-spring-boot-starter** 是一个面向 使用 ip2region 的应用 的 Spring Boot Starter，用于将 **ip2region** 集成到 Spring Boot 应用中。它提供自动装配、属性绑定与开箱即用的 Bean，使应用以最小配置即可使用 ip2region 的全部能力。
 
 | 维度 | 说明 |
