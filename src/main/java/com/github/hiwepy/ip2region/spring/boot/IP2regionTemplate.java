@@ -80,6 +80,9 @@ public class IP2regionTemplate implements DisposableBean {
 				return RegionEnum.UK;
 			}
 			RegionAddress address = new RegionAddress(regionArr);
+			if (RegionAddress.isOfficialV4Format(regionArr)) {
+				return RegionEnum.getByCode2(regionArr[4]);
+			}
 			return RegionEnum.getByRegionAddress(address);
 		} catch (Exception e) {
 			log.error(" IP : {} >> Country/Region Parser Error：{}", ip, e.getMessage());
