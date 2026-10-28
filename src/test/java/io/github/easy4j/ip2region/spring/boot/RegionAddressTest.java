@@ -35,6 +35,16 @@ public class RegionAddressTest {
     }
 
     @Test
+    public void officialV4ArrayConstructor() {
+        RegionAddress address = new RegionAddress(new String[]{"United States", "California", "0", "Google LLC", "US"});
+        assertThat(address.getCountry()).isEqualTo("United States");
+        assertThat(address.getProvince()).isEqualTo("California");
+        assertThat(address.getCity()).isEqualTo("0");
+        assertThat(address.getArea()).isEqualTo("0");
+        assertThat(address.getISP()).isEqualTo("Google LLC");
+    }
+
+    @Test
     public void fullConstructor() {
         RegionAddress address = new RegionAddress("中国", "江苏省", "南京市", "华东", "电信");
         assertThat(address.getCountry()).isEqualTo("中国");

@@ -92,6 +92,8 @@ Starter 自动装配以下 Bean：
 
 默认使用内置的 `classpath:ip2region/ip2region.xdb`，无需配置。使用自有 XDB 文件时：
 
+
+
 ```yaml
 ip2region:
   external: true
@@ -99,6 +101,8 @@ ip2region:
 ```
 
 旧版 `ip2region.db` 与当前 XDB 查询器不兼容。
+
+内置 IPv4 XDB 来自 [ip2region 官方 v3.18.0](https://github.com/lionsoul2014/ip2region/blob/v3.18.0/data/ip2region_v4.xdb)，SHA-256：`8e31bbdccb5bf21028af10592d4312ec975da0bffa108c0c5d862a12190f9ad3`。新版字段顺序为 `国家|省份|城市|运营商|ISO 两位国家代码`；中国以外的国家名称为英文。旧版 XDB 的 `国家|地区|省份|城市|运营商` 记录仍可解析。
 
 ### 6.3 使用 Bean
 
