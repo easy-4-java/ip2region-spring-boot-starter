@@ -16,10 +16,11 @@ public class IP2RegionTemplate_Test {
         try {
             IP2regionTemplate template = new IP2regionTemplate(searcher);
             assertThat(template.memorySearch("8.8.8.8")).isNotEqualTo(XdbSearcher.NOT_MATCH);
-            assertThat(template.getRegion("8.8.8.8")).contains("美国");
-            assertThat(template.getRegionAddress("8.8.8.8").getCountry()).isEqualTo("美国");
+            assertThat(template.getRegion("8.8.8.8")).contains("United States|California|0|Google LLC|US");
+            assertThat(template.getRegionAddress("8.8.8.8").getCountry()).isEqualTo("United States");
+            assertThat(template.getRegionAddress("8.8.8.8").getISP()).isEqualTo("Google LLC");
             assertThat(template.getRegionByIp("8.8.8.8")).isEqualTo(RegionEnum.US);
-            assertThat(template.getCountryByIp("8.8.8.8")).isEqualTo("美国");
+            assertThat(template.getCountryByIp("8.8.8.8")).isEqualTo("United States");
             assertThat(template.isMainlandIp("8.8.8.8")).isFalse();
             assertThat(template.isMainlandIp("114.114.114.114")).isTrue();
         } finally {

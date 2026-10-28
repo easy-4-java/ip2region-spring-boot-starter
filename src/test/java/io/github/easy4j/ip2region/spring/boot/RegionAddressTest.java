@@ -9,6 +9,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class RegionAddressTest {
 
     @Test
+    public void parsesOfficialV4AndLegacyLayouts() {
+        RegionAddress official = new RegionAddress(new String[]{"United States", "California", "0", "Google LLC", "US"});
+        assertThat(official.getProvince()).isEqualTo("California");
+        assertThat(official.getISP()).isEqualTo("Google LLC");
+        RegionAddress legacy = new RegionAddress(new String[]{"中国", "华东", "江苏省", "南京市", "电信"});
+        assertThat(legacy.getProvince()).isEqualTo("江苏省");
+        assertThat(legacy.getCity()).isEqualTo("南京市");
+    }
+
+    @Test
     public void mapsXdbFields() {
         RegionAddress address = new RegionAddress(new String[]{"中国", "华东", "江苏省", "南京市", "电信"});
         assertThat(address.getCountry()).isEqualTo("中国");

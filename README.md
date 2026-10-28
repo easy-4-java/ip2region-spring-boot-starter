@@ -90,6 +90,9 @@ Add the dependency above to your `pom.xml`.
 
 ### 6.2 Configure
 
+Bundled IPv4 XDB: [official ip2region v3.18.0](https://github.com/lionsoul2014/ip2region/blob/v3.18.0/data/ip2region_v4.xdb), SHA-256 `8e31bbdccb5bf21028af10592d4312ec975da0bffa108c0c5d862a12190f9ad3`. The current data layout is `country|province|city|ISP|ISO alpha-2`; country names outside China are in English. Legacy XDB records using `country|area|province|city|ISP` remain readable.
+
+
 ```yaml
 ip2region:
   enabled: true
