@@ -21,8 +21,8 @@
 
 ---
 
-> **当前版本**：`4.1.x.20260527-SNAPSHOT`<br>
-> **JDK 基线**：`17`<br>
+> **当前版本**：`4.1.x.20260630-SNAPSHOT`<br>
+> **JDK 基线**：`21`<br>
 > **Group ID**：`io.github.easy4j`<br>
 > **Artifact ID**：`ip2region-spring-boot-starter`<br>
 > **许可证**：Apache License 2.0<br>
@@ -36,8 +36,8 @@
 | 类型 | Spring Boot Starter |
 | 消费方 | 使用 ip2region 的 Spring Boot 应用 |
 | 核心能力 | 自动装配、属性绑定、开箱即用的 ip2region Bean |
-| JDK | `17` |
-| 坐标 | `io.github.easy4j:ip2region-spring-boot-starter:4.1.x.20260527-SNAPSHOT` |
+| JDK | `21` |
+| 坐标 | `io.github.easy4j:ip2region-spring-boot-starter:4.1.x.20260630-SNAPSHOT` |
 | 配置前缀 | `ip2region` |
 
 ## 2. 核心能力
@@ -52,9 +52,9 @@
 
 | 依赖 | 最低版本 | 证据来源 |
 |---|---:|---|
-| JDK | `17` | `pom.xml` |
-| Spring Boot | `4.1.0-M4` | `pom.xml` parent |
-| Maven | `3.6+` | Maven Enforcer |
+| JDK | `21` | `pom.xml` |
+| Spring Boot | `4.1.2` | `pom.xml` parent |
+| Maven | `4.0.0-rc-5` | `pom.xml` |
 
 ## 4. 自动装配
 
@@ -67,8 +67,8 @@ Starter 自动装配以下 Bean：
 
 自动装配注册：
 
-- `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`（Spring Boot 2.7+ / 3.x / 4.x）
-- `META-INF/spring.factories`（Spring Boot 2.x 传统方式）
+- `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`（当前 4.1.x 构件）
+- `META-INF/spring.factories`（保留作旧版注册）
 
 ## 5. 引入依赖
 
@@ -76,7 +76,7 @@ Starter 自动装配以下 Bean：
 <dependency>
     <groupId>io.github.easy4j</groupId>
     <artifactId>ip2region-spring-boot-starter</artifactId>
-    <version>4.1.x.20260527-SNAPSHOT</version>
+    <version>4.1.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -90,10 +90,15 @@ Starter 自动装配以下 Bean：
 
 ### 6.2 配置
 
+默认使用内置的 `classpath:ip2region/ip2region.xdb`，无需配置。使用自有 XDB 文件时：
+
 ```yaml
 ip2region:
-  enabled: true
+  external: true
+  location: file:/path/to/ip2region.xdb
 ```
+
+旧版 `ip2region.db` 与当前 XDB 查询器不兼容。
 
 ### 6.3 使用 Bean
 
@@ -123,8 +128,8 @@ private XdbSearcher xdbSearcher;
 
 | 属性 | 类型 | 默认值 | 必填 | 说明 | 敏感 |
 |---|---|---|:---:|---|:---:|
-| `ip2region.enabled` | boolean | `true` | 否 | 是否启用 Starter | 否 |
-<!-- 更多属性见下方 -->
+| `ip2region.external` | boolean | `false` | 否 | 是否加载自有 XDB 文件 | 否 |
+| `ip2region.location` | string | `classpath:ip2region/ip2region.xdb` | 否 | XDB 资源位置 | 否 |
 
 ## 8. 版本线与兼容性
 
@@ -132,20 +137,19 @@ private XdbSearcher xdbSearcher;
 |---|---:|---:|---|:---:|
 | `2.3.x` / `2.7.x` | `8+` | 2.3.x / 2.7.x | `1.0.x` | 维护中 |
 | `3.0.x` ~ `3.5.x` | `17` | 3.x | `2.0.x` | 维护中 |
-| `4.0.x` / `4.1.x` | `17+` | 4.x | `3.0.x` | 活跃开发 |
+| `4.0.x` / `4.1.x` | 4.1.x: `21` | 4.x | 4.1.x: `2.7.0` | 活跃开发 |
 
 ## 9. 构建与测试
 
 ```bash
 mvn clean verify
-mvn -pl ip2region-spring-boot-starter -am test
 ```
 
 ## 10. 排障
 
 | 症状 | 诊断 | 解决 |
 |---|---|---|
-| Bean 未创建 | 查看自动装配报告 | 确认 `ip2region.enabled=true` 与 classpath |
+| Bean 未创建 | 查看自动装配报告 | 确认 ip2region 依赖和 XDB 资源可用 |
 | `ClassNotFoundException` | 缺少依赖 | 引入对应模块 |
 | 版本冲突 | `mvn dependency:tree` | 使用 BOM 统一版本 |
 

@@ -21,8 +21,8 @@
 
 ---
 
-> **Current Version**：`4.1.x.20260527-SNAPSHOT`<br>
-> **JDK Baseline**：`17`<br>
+> **Current Version**：`4.1.x.20260630-SNAPSHOT`<br>
+> **JDK Baseline**：`21`<br>
 > **Group ID**：`io.github.easy4j`<br>
 > **Artifact ID**：`ip2region-spring-boot-starter`<br>
 > **License**：Apache License 2.0<br>
@@ -36,8 +36,8 @@
 | Type | Spring Boot Starter |
 | Consumers | Spring Boot applications using ip2region |
 | Core Capabilities | auto-configuration, property binding, ready-to-use beans for ip2region |
-| JDK | `17` |
-| Coordinates | `io.github.easy4j:ip2region-spring-boot-starter:4.1.x.20260527-SNAPSHOT` |
+| JDK | `21` |
+| Coordinates | `io.github.easy4j:ip2region-spring-boot-starter:4.1.x.20260630-SNAPSHOT` |
 | Config Prefix | `ip2region` |
 
 ## 2. Core Capabilities
@@ -52,9 +52,9 @@
 
 | Dependency | Minimum | Evidence |
 |---|---:|---|
-| JDK | `17` | `pom.xml` |
-| Spring Boot | `4.1.0-M4` | `pom.xml` parent |
-| Maven | `3.6+` | Maven Enforcer |
+| JDK | `21` | `pom.xml` |
+| Spring Boot | `4.1.2` | `pom.xml` parent |
+| Maven | `4.0.0-rc-5` | `pom.xml` |
 
 ## 4. Auto-configuration
 
@@ -67,8 +67,8 @@ The starter auto-configures the following beans:
 
 Auto-configuration registration:
 
-- `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` (Spring Boot 2.7+ / 3.x / 4.x)
-- `META-INF/spring.factories` (Spring Boot 2.x legacy)
+- `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports` (this 4.1.x artifact)
+- `META-INF/spring.factories` (retained for legacy registration)
 
 ## 5. Dependency
 
@@ -76,7 +76,7 @@ Auto-configuration registration:
 <dependency>
     <groupId>io.github.easy4j</groupId>
     <artifactId>ip2region-spring-boot-starter</artifactId>
-    <version>4.1.x.20260527-SNAPSHOT</version>
+    <version>4.1.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -90,10 +90,15 @@ Add the dependency above to your `pom.xml`.
 
 ### 6.2 Configure
 
+No configuration is required for the bundled `classpath:ip2region/ip2region.xdb` database. To use your own XDB file:
+
 ```yaml
 ip2region:
-  enabled: true
+  external: true
+  location: file:/path/to/ip2region.xdb
 ```
+
+The legacy `ip2region.db` format is not compatible with the XDB searcher.
 
 ### 6.3 Use the bean
 
@@ -123,8 +128,8 @@ private XdbSearcher xdbSearcher;
 
 | Property | Type | Default | Required | Description | Sensitive |
 |---|---|---|:---:|---|:---:|
-| `ip2region.enabled` | boolean | `true` | No | Enable the starter | No |
-<!-- additional properties below -->
+| `ip2region.external` | boolean | `false` | No | Load a custom XDB file | No |
+| `ip2region.location` | string | `classpath:ip2region/ip2region.xdb` | No | XDB resource location | No |
 
 ## 8. Version Lines and Compatibility
 
@@ -132,20 +137,19 @@ private XdbSearcher xdbSearcher;
 |---|---:|---:|---|:---:|
 | `2.3.x` / `2.7.x` | `8+` | 2.3.x / 2.7.x | `1.0.x` | Maintenance |
 | `3.0.x` ~ `3.5.x` | `17` | 3.x | `2.0.x` | Maintenance |
-| `4.0.x` / `4.1.x` | `17+` | 4.x | `3.0.x` | Active |
+| `4.0.x` / `4.1.x` | 4.1.x: `21` | 4.x | 4.1.x: `2.7.0` | Active |
 
 ## 9. Build and Test
 
 ```bash
 mvn clean verify
-mvn -pl ip2region-spring-boot-starter -am test
 ```
 
 ## 10. Troubleshooting
 
 | Symptom | Diagnosis | Resolution |
 |---|---|---|
-| Bean not created | Check auto-configuration report | Verify `ip2region.enabled=true` and classpath |
+| Bean not created | Check auto-configuration report | Verify the ip2region dependency and XDB resource are available |
 | `ClassNotFoundException` | Missing dependency | Add the required module |
 | Version conflict | `mvn dependency:tree` | Use BOM for version alignment |
 
