@@ -21,7 +21,21 @@ public class RegionAddress {
      * @param region location region address info array
      */
     public RegionAddress(String[] region) {
-        this(region[0], region[2], region[3], region[1], region[4]);
+        this(region[0], isOfficialV4Format(region) ? region[1] : region[2],
+                isOfficialV4Format(region) ? region[2] : region[3],
+                isOfficialV4Format(region) ? "0" : region[1],
+                isOfficialV4Format(region) ? region[3] : region[4]);
+    }
+
+    /** Identifies the current official country|province|city|ISP|ISO2 data layout. */
+    public static boolean isOfficialV4Format(String[] region) {
+        if (region.length != 5) {
+            return false;
+        }
+        String code = region[4];
+        return "Reserved".equals(region[0]) ||
+                (code.length() == 2 && code.charAt(0) >= 'A' && code.charAt(0) <= 'Z' &&
+                        code.charAt(1) >= 'A' && code.charAt(1) <= 'Z');
     }
 
     /**
