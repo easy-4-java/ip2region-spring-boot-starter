@@ -21,7 +21,7 @@
 
 ---
 
-> **Current Version**：`2.0.2-SNAPSHOT`<br>
+> **Current Version**：`2.0.x.20260630-SNAPSHOT`<br>
 > **JDK Baseline**：`17`<br>
 > **Group ID**：`io.github.easy4j`<br>
 > **Artifact ID**：`ip2region-spring-boot-starter`<br>
@@ -37,7 +37,7 @@
 | Consumers | Spring Boot applications using ip2region |
 | Core Capabilities | auto-configuration, property binding, ready-to-use beans for ip2region |
 | JDK | `17` |
-| Coordinates | `io.github.easy4j:ip2region-spring-boot-starter:2.0.2-SNAPSHOT` |
+| Coordinates | `io.github.easy4j:ip2region-spring-boot-starter:2.0.x.20260630-SNAPSHOT` |
 | Config Prefix | `ip2region` |
 
 ## 2. Core Capabilities
@@ -76,7 +76,7 @@ Auto-configuration registration:
 <dependency>
     <groupId>io.github.easy4j</groupId>
     <artifactId>ip2region-spring-boot-starter</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>2.0.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
 

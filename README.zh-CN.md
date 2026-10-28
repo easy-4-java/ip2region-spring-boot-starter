@@ -21,7 +21,7 @@
 
 ---
 
-> **当前版本**：`2.0.2-SNAPSHOT`<br>
+> **当前版本**：`2.0.x.20260630-SNAPSHOT`<br>
 > **JDK 基线**：`17`<br>
 > **Group ID**：`io.github.easy4j`<br>
 > **Artifact ID**：`ip2region-spring-boot-starter`<br>
@@ -37,7 +37,7 @@
 | 消费方 | 使用 ip2region 的 Spring Boot 应用 |
 | 核心能力 | 自动装配、属性绑定、开箱即用的 ip2region Bean |
 | JDK | `17` |
-| 坐标 | `io.github.easy4j:ip2region-spring-boot-starter:2.0.2-SNAPSHOT` |
+| 坐标 | `io.github.easy4j:ip2region-spring-boot-starter:2.0.x.20260630-SNAPSHOT` |
 | 配置前缀 | `ip2region` |
 
 ## 2. 核心能力
@@ -76,7 +76,7 @@ Starter 自动装配以下 Bean：
 <dependency>
     <groupId>io.github.easy4j</groupId>
     <artifactId>ip2region-spring-boot-starter</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>2.0.x.20260630-SNAPSHOT</version>
 </dependency>
 ```
 
