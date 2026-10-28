@@ -54,7 +54,7 @@
 |---|---:|---|
 | JDK | `21` | `pom.xml` |
 | Spring Boot | `4.1.2` | `pom.xml` parent |
-| Maven | `3.9.9` | `pom.xml` |
+| Maven | `4.0.0-rc-5` | `pom.xml` |
 
 ## 4. 自动装配
 
