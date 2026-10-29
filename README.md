@@ -55,7 +55,7 @@
 | Dependency | Minimum | Evidence |
 |---|---:|---|
 | JDK | `17` | `pom.xml` |
-| Spring Boot | `3.5.9` | `pom.xml` parent |
+| Spring Boot | `3.5.16` | `pom.xml` parent |
 | Maven | `3.9.16` | `pom.xml` |
 
 ## 4. Auto-configuration
