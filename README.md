@@ -169,11 +169,11 @@ The IPv6 database is pinned to [upstream v3.18.0](https://github.com/lionsoul201
 
 ## 8. Version Lines and Compatibility
 
-| Branch | JDK | Spring Boot | Component Version | Status |
+| Branch | JDK | Spring Boot | ip2region Version | Status |
 |---|---:|---:|---|:---:|
-| `2.3.x` / `2.7.x` | `8+` | 2.3.x / 2.7.x | `1.0.x` | Maintenance |
-| `3.0.x` ~ `3.5.x` | `17` | 3.x | `2.0.x` | Maintenance |
-| `4.0.x` / `4.1.x` | 4.1.x: `21` | 4.x | 4.1.x: `3.3.7` | Active |
+| `2.3.x` / `2.7.x` | `8+` | 2.3.x / 2.7.x | `3.3.7` | Maintenance |
+| `3.0.x` ~ `3.5.x` | `17` | 3.x | `3.3.7` | Maintenance |
+| `4.0.x` / `4.1.x` | 4.1.x: `21` | 4.x | `3.3.7` | Active |
 
 ## 9. Build and Test
 
