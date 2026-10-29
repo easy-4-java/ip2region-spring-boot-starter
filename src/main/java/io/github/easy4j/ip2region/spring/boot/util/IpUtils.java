@@ -40,7 +40,6 @@ public class IpUtils {
     /**
      * <p>Main.</p>
      * @param args the args
-     * @return the static void
      */
 
     public static void main(String[] args) {
