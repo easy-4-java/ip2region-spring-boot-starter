@@ -19,6 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import org.lionsoul.ip2region.xdb.Searcher;
+import org.springframework.util.FileCopyUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -158,15 +163,19 @@ class DualStackTest {
     void concurrentMixedQueriesMatchSingleThreadResults() throws Exception {
         String ipv4Result = searcher.memorySearch(V4);
         String ipv6Result = searcher.memorySearch(V6);
-        try (var executor = Executors.newFixedThreadPool(8)) {
+        ExecutorService executor = Executors.newFixedThreadPool(8);
+        try {
             List<Callable<Boolean>> tasks = new ArrayList<>();
             for (int i = 0; i < 128; i++) {
                 tasks.add(() -> ipv4Result.equals(searcher.memorySearch(V4))
                         && ipv6Result.equals(searcher.memorySearch(V6)));
             }
-            for (var result : executor.invokeAll(tasks)) {
+            for (Future<Boolean> result : executor.invokeAll(tasks)) {
                 assertThat(result.get()).isTrue();
             }
+        } finally {
+            executor.shutdown();
+            assertThat(executor.awaitTermination(10, TimeUnit.SECONDS)).isTrue();
         }
     }
 
@@ -174,7 +183,7 @@ class DualStackTest {
     void legacyStructureTwoIpv4FileAndBufferApiRemainUsable(@TempDir Path directory) throws Exception {
         byte[] data;
         try (InputStream input = LOADER.getResource(XdbSearcher.DEFAULT_LOCATION).getInputStream()) {
-            data = input.readAllBytes();
+            data = FileCopyUtils.copyToByteArray(input);
         }
         // 旧结构 2.0 的 IPv4 索引布局不变，地址族由结构版本隐含。
         data[0] = 2;
@@ -188,7 +197,7 @@ class DualStackTest {
         XdbSearcher old = new XdbSearcher(LOADER, legacy.toString(), false, "unused");
         try {
             assertThat(old.memorySearch(V4)).isEqualTo(searcher.memorySearch(V4));
-            var reused = old.loadWithBuffer("not-read-when-buffer-exists");
+            Searcher reused = old.loadWithBuffer("not-read-when-buffer-exists");
             try {
                 assertThat(reused.search(V4)).isEqualTo(searcher.memorySearch(V4));
             } finally {
