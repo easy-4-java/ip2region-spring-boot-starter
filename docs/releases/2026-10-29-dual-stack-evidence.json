@@ -1,0 +1,599 @@
+{
+  "source_sha": "a5632c87e6b144f07fe819a393ec2a33cf5615c9",
+  "stash": "d48b1556abd0bed332be22f3e18b7dab8e300eb7",
+  "lines": {
+    "2.3.x": {
+      "baseline": "db8fa98afd828028c467d4e7d247ffcad15a3cc6",
+      "feature": "feature/REQ-20261029-wandl-ip2region-2-3-x",
+      "version": "2.3.x.20260630-SNAPSHOT",
+      "boot": "2.3.12.RELEASE",
+      "jdk": "8",
+      "maven": "/opt/homebrew/opt/maven/bin/mvn",
+      "java_home": "/Users/wandl/Library/Java/JavaVirtualMachines/corretto-1.8.0_504/Contents/Home",
+      "verify": "passed",
+      "tests": 86,
+      "coverage": 0.955637707948244,
+      "sha": "63e903c1d3f8e2f5b5d2d638f94a08259d546022",
+      "log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/verify-2.3.x.log",
+      "publish": "passed",
+      "artifacts": {
+        "main.pom": {
+          "filename": "ip2region-spring-boot-starter-2.3.x.20260630-20261029.065909-1.pom",
+          "sha256": "3f93f46a68ba44ce600a515bdd544f31e7ac50e17f49bee1d41b8b11778b224f",
+          "value": "2.3.x.20260630-20261029.065909-1"
+        },
+        "main.jar": {
+          "filename": "ip2region-spring-boot-starter-2.3.x.20260630-20261029.065909-1.jar",
+          "sha256": "b2424e95cbf28705a5d63c2176f21521c0e08af86ad879e995e3bb4d109e687c",
+          "value": "2.3.x.20260630-20261029.065909-1"
+        },
+        "sources.jar": {
+          "filename": "ip2region-spring-boot-starter-2.3.x.20260630-20261029.065909-1-sources.jar",
+          "sha256": "95bbe5ad192b2c3d3ec914b9b07af22053cdcb395875742174b721e299782680",
+          "value": "2.3.x.20260630-20261029.065909-1"
+        },
+        "javadoc.jar": {
+          "filename": "ip2region-spring-boot-starter-2.3.x.20260630-20261029.065909-1-javadoc.jar",
+          "sha256": "dede075a54ab41642b37e97faf740a1158c2557618c0cd97355aeb9b1033c294",
+          "value": "2.3.x.20260630-20261029.065909-1"
+        }
+      },
+      "deploy_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/deploy-2.3.x.log",
+      "consumer": "passed",
+      "consumer_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/consumer-2.3.x.log",
+      "consumer_repository": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/consumers/2.3.x/repository",
+      "ci_runtime": {
+        "conclusion": "success",
+        "databaseId": 40832451934,
+        "headBranch": "2.3.x",
+        "headSha": "63e903c1d3f8e2f5b5d2d638f94a08259d546022",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40832451934"
+      },
+      "ci": {
+        "conclusion": "success",
+        "databaseId": 40833988394,
+        "headBranch": "2.3.x",
+        "headSha": "998b05e0c0070cc8b581e3d56574b83f34c7bba2",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40833988394"
+      },
+      "remote_sha": "998b05e0c0070cc8b581e3d56574b83f34c7bba2",
+      "bytecode_major": 52
+    },
+    "2.7.x": {
+      "baseline": "c855513090b0750bc08ae89592a48982285d241a",
+      "feature": "feature/REQ-20261029-wandl-ip2region-2-7-x",
+      "version": "2.7.x.20260630-SNAPSHOT",
+      "boot": "2.7.18",
+      "jdk": "8",
+      "maven": "/opt/homebrew/opt/maven/bin/mvn",
+      "java_home": "/Users/wandl/Library/Java/JavaVirtualMachines/corretto-1.8.0_504/Contents/Home",
+      "verify": "passed",
+      "tests": 86,
+      "coverage": 0.955637707948244,
+      "sha": "5b6b87873db031e3a3c64f4ee37b07d3458dc423",
+      "log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/verify-2.7.x.log",
+      "publish": "passed",
+      "artifacts": {
+        "main.pom": {
+          "filename": "ip2region-spring-boot-starter-2.7.x.20260630-20261029.070334-1.pom",
+          "sha256": "1a9e9cd953ff01086aece91ccca9fa550cef5c44918b0eb026b3d9f0f69c2b40",
+          "value": "2.7.x.20260630-20261029.070334-1"
+        },
+        "main.jar": {
+          "filename": "ip2region-spring-boot-starter-2.7.x.20260630-20261029.070334-1.jar",
+          "sha256": "0213db16205c772a14160cb909e64441f4f07555e19cb35addf89a474c2d0abc",
+          "value": "2.7.x.20260630-20261029.070334-1"
+        },
+        "sources.jar": {
+          "filename": "ip2region-spring-boot-starter-2.7.x.20260630-20261029.070334-1-sources.jar",
+          "sha256": "1855ebdd0621d2b6109525f838bb4e90b8719505ca20aae9f86f10d52ff376d5",
+          "value": "2.7.x.20260630-20261029.070334-1"
+        },
+        "javadoc.jar": {
+          "filename": "ip2region-spring-boot-starter-2.7.x.20260630-20261029.070334-1-javadoc.jar",
+          "sha256": "37645cefce7b38104fbf67fd9fa3bc6e51a68b762e8f6f50299c162442ae1ca7",
+          "value": "2.7.x.20260630-20261029.070334-1"
+        }
+      },
+      "deploy_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/deploy-2.7.x.log",
+      "consumer": "passed",
+      "consumer_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/consumer-2.7.x.log",
+      "consumer_repository": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/consumers/2.7.x/repository",
+      "ci_runtime": {
+        "conclusion": "success",
+        "databaseId": 40832452679,
+        "headBranch": "2.7.x",
+        "headSha": "5b6b87873db031e3a3c64f4ee37b07d3458dc423",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40832452679"
+      },
+      "ci": {
+        "conclusion": "success",
+        "databaseId": 40833989946,
+        "headBranch": "2.7.x",
+        "headSha": "1b178902cf4955f23a16c3828254254f7e2d7bc9",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40833989946"
+      },
+      "remote_sha": "1b178902cf4955f23a16c3828254254f7e2d7bc9",
+      "bytecode_major": 52
+    },
+    "3.0.x": {
+      "baseline": "e100602e8d261f3d4e35a6aa965bd7073f1219df",
+      "feature": "feature/REQ-20261029-wandl-ip2region-3-0-x",
+      "version": "3.0.x.20260630-SNAPSHOT",
+      "boot": "3.0.13",
+      "jdk": "17",
+      "maven": "/opt/homebrew/opt/maven/bin/mvn",
+      "java_home": "/Users/wandl/Library/Java/JavaVirtualMachines/corretto-17.0.20.1/Contents/Home",
+      "verify": "passed",
+      "tests": 86,
+      "coverage": 0.955637707948244,
+      "sha": "fa196afab60876fbf24647247782b6ab8f7fd7ae",
+      "log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/verify-3.0.x.log",
+      "publish": "passed",
+      "artifacts": {
+        "main.pom": {
+          "filename": "ip2region-spring-boot-starter-3.0.x.20260630-20261029.070501-1.pom",
+          "sha256": "c1d37a17b19c6a82f9ae42a4c5ce9e0edca0e824bb3075e3d94f7494a3d49c5d",
+          "value": "3.0.x.20260630-20261029.070501-1"
+        },
+        "main.jar": {
+          "filename": "ip2region-spring-boot-starter-3.0.x.20260630-20261029.070501-1.jar",
+          "sha256": "bf3b3c0fccba4e74ecf1a5bc35ff4193d3ca9fb12126b7ba39a5317016481e39",
+          "value": "3.0.x.20260630-20261029.070501-1"
+        },
+        "sources.jar": {
+          "filename": "ip2region-spring-boot-starter-3.0.x.20260630-20261029.070501-1-sources.jar",
+          "sha256": "d37cfd47e3e611d1c98a5166c6c99bce52fdfd51978c38304a64a01eb6e6766b",
+          "value": "3.0.x.20260630-20261029.070501-1"
+        },
+        "javadoc.jar": {
+          "filename": "ip2region-spring-boot-starter-3.0.x.20260630-20261029.070501-1-javadoc.jar",
+          "sha256": "08d57a1dcfd8736d93e4a0661cc89a05c896d377db866cfff90db1a4f09c4235",
+          "value": "3.0.x.20260630-20261029.070501-1"
+        }
+      },
+      "deploy_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/deploy-3.0.x.log",
+      "consumer": "passed",
+      "consumer_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/consumer-3.0.x.log",
+      "consumer_repository": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/consumers/3.0.x/repository",
+      "ci_runtime": {
+        "conclusion": "success",
+        "databaseId": 40832450182,
+        "headBranch": "3.0.x",
+        "headSha": "fa196afab60876fbf24647247782b6ab8f7fd7ae",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40832450182"
+      },
+      "ci": {
+        "conclusion": "success",
+        "databaseId": 40833988612,
+        "headBranch": "3.0.x",
+        "headSha": "921ca938a68874fa4c2235ff066d450b84ae9a88",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40833988612"
+      },
+      "remote_sha": "921ca938a68874fa4c2235ff066d450b84ae9a88",
+      "bytecode_major": 61
+    },
+    "3.1.x": {
+      "baseline": "7eb6619df316f934a9fa1388f0b40b8a8a740994",
+      "feature": "feature/REQ-20261029-wandl-ip2region-3-1-x",
+      "version": "3.1.x.20260630-SNAPSHOT",
+      "boot": "3.1.12",
+      "jdk": "17",
+      "maven": "/opt/homebrew/opt/maven/bin/mvn",
+      "java_home": "/Users/wandl/Library/Java/JavaVirtualMachines/corretto-17.0.20.1/Contents/Home",
+      "verify": "passed",
+      "tests": 86,
+      "coverage": 0.955637707948244,
+      "sha": "725ddcbb18dcaa612180607feea709c458659f80",
+      "log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/verify-3.1.x.log",
+      "publish": "passed",
+      "artifacts": {
+        "main.pom": {
+          "filename": "ip2region-spring-boot-starter-3.1.x.20260630-20261029.070601-2.pom",
+          "sha256": "68e886f26b9be5b3bc6359dff35ea4990276ad9c47a3927d960f4b1f09b9745c",
+          "value": "3.1.x.20260630-20261029.070601-2"
+        },
+        "main.jar": {
+          "filename": "ip2region-spring-boot-starter-3.1.x.20260630-20261029.070601-2.jar",
+          "sha256": "d9afc4d361c0db258e596875aa010f002d4f8383753ef122d2ae4bf62260eb62",
+          "value": "3.1.x.20260630-20261029.070601-2"
+        },
+        "sources.jar": {
+          "filename": "ip2region-spring-boot-starter-3.1.x.20260630-20261029.070601-2-sources.jar",
+          "sha256": "f37d1a9eeaebcd430c8c97a694e7e2d16c1921b48de334e7c71096745b6fca69",
+          "value": "3.1.x.20260630-20261029.070601-2"
+        },
+        "javadoc.jar": {
+          "filename": "ip2region-spring-boot-starter-3.1.x.20260630-20261029.070601-2-javadoc.jar",
+          "sha256": "28d764456c55e832f015c18a6a7fe989e2eeaf45bab8c1d7075a3b20064a8c04",
+          "value": "3.1.x.20260630-20261029.070601-2"
+        }
+      },
+      "deploy_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/deploy-3.1.x.log",
+      "consumer": "passed",
+      "consumer_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/consumer-3.1.x.log",
+      "consumer_repository": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/consumers/3.1.x/repository",
+      "ci_runtime": {
+        "conclusion": "success",
+        "databaseId": 40832451415,
+        "headBranch": "3.1.x",
+        "headSha": "725ddcbb18dcaa612180607feea709c458659f80",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40832451415"
+      },
+      "ci": {
+        "conclusion": "success",
+        "databaseId": 40833990454,
+        "headBranch": "3.1.x",
+        "headSha": "1862bb4b62e21e3dffdc8db4ab17bc2188e0768f",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40833990454"
+      },
+      "remote_sha": "1862bb4b62e21e3dffdc8db4ab17bc2188e0768f",
+      "bytecode_major": 61
+    },
+    "3.2.x": {
+      "baseline": "8f44597078c25b1d443ede100995ffa36450468f",
+      "feature": "feature/REQ-20261029-wandl-ip2region-3-2-x",
+      "version": "3.2.x.20260630-SNAPSHOT",
+      "boot": "3.2.12",
+      "jdk": "17",
+      "maven": "/opt/homebrew/opt/maven/bin/mvn",
+      "java_home": "/Users/wandl/Library/Java/JavaVirtualMachines/corretto-17.0.20.1/Contents/Home",
+      "verify": "passed",
+      "tests": 86,
+      "coverage": 0.9552238805970149,
+      "sha": "42036b371ad80bcd3deed73071306ff144e370fe",
+      "log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/verify-3.2.x.log",
+      "publish": "passed",
+      "artifacts": {
+        "main.pom": {
+          "filename": "ip2region-spring-boot-starter-3.2.x.20260630-20261029.070645-1.pom",
+          "sha256": "197e1db65be6b31d5c283da036559e3fefc18c9e9954b024b3a8c176946650c0",
+          "value": "3.2.x.20260630-20261029.070645-1"
+        },
+        "main.jar": {
+          "filename": "ip2region-spring-boot-starter-3.2.x.20260630-20261029.070645-1.jar",
+          "sha256": "8124327ebaac4825353a8769d23c2b40f79d4e7d2cee5fc118358a58e6724402",
+          "value": "3.2.x.20260630-20261029.070645-1"
+        },
+        "sources.jar": {
+          "filename": "ip2region-spring-boot-starter-3.2.x.20260630-20261029.070645-1-sources.jar",
+          "sha256": "6e9ae655709e736f7d239dfd6fff583ab50e60290ff6f0a84eea38dd0f060379",
+          "value": "3.2.x.20260630-20261029.070645-1"
+        },
+        "javadoc.jar": {
+          "filename": "ip2region-spring-boot-starter-3.2.x.20260630-20261029.070645-1-javadoc.jar",
+          "sha256": "d0b0616d6c5de14ec8a3b1532126adf5d271cee8d0bfc6b60d281cb48f886dba",
+          "value": "3.2.x.20260630-20261029.070645-1"
+        }
+      },
+      "deploy_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/deploy-3.2.x.log",
+      "consumer": "passed",
+      "consumer_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/consumer-3.2.x.log",
+      "consumer_repository": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/consumers/3.2.x/repository",
+      "ci_runtime": {
+        "conclusion": "success",
+        "databaseId": 40832453219,
+        "headBranch": "3.2.x",
+        "headSha": "42036b371ad80bcd3deed73071306ff144e370fe",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40832453219"
+      },
+      "ci": {
+        "conclusion": "success",
+        "databaseId": 40833988987,
+        "headBranch": "3.2.x",
+        "headSha": "282d6ee8320caeb56ae34c7d4d24ee29ad4a8c9b",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40833988987"
+      },
+      "remote_sha": "282d6ee8320caeb56ae34c7d4d24ee29ad4a8c9b",
+      "bytecode_major": 61
+    },
+    "3.3.x": {
+      "baseline": "1488bba00e3e24acc0bcd654972cfac4c0cb9476",
+      "feature": "feature/REQ-20261029-wandl-ip2region-3-3-x",
+      "version": "3.3.x.20260630-SNAPSHOT",
+      "boot": "3.3.13",
+      "jdk": "17",
+      "maven": "/opt/homebrew/opt/maven/bin/mvn",
+      "java_home": "/Users/wandl/Library/Java/JavaVirtualMachines/corretto-17.0.20.1/Contents/Home",
+      "verify": "passed",
+      "tests": 86,
+      "coverage": 0.9552238805970149,
+      "sha": "7e9ef023688c6b71679d05ed992ca0a83f40d6a4",
+      "log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/verify-3.3.x.log",
+      "publish": "passed",
+      "artifacts": {
+        "main.pom": {
+          "filename": "ip2region-spring-boot-starter-3.3.x.20260630-20261029.070742-1.pom",
+          "sha256": "03e6484d49147719606045dee7c280a47df30f0b42925a6d4519233e7358820a",
+          "value": "3.3.x.20260630-20261029.070742-1"
+        },
+        "main.jar": {
+          "filename": "ip2region-spring-boot-starter-3.3.x.20260630-20261029.070742-1.jar",
+          "sha256": "756adf8771333192a672bc3d497e7d7c54c3d0deac5aeb6457c8c852fe2c3ac1",
+          "value": "3.3.x.20260630-20261029.070742-1"
+        },
+        "sources.jar": {
+          "filename": "ip2region-spring-boot-starter-3.3.x.20260630-20261029.070742-1-sources.jar",
+          "sha256": "788d37c265049cf7b7c11a99312d1075eb11b153c654422f96edde9b89c4bcb0",
+          "value": "3.3.x.20260630-20261029.070742-1"
+        },
+        "javadoc.jar": {
+          "filename": "ip2region-spring-boot-starter-3.3.x.20260630-20261029.070742-1-javadoc.jar",
+          "sha256": "8eb9e5e7ad3473495955bc72303aff0ac94acd3decf037cb4a1a4475d5437ca9",
+          "value": "3.3.x.20260630-20261029.070742-1"
+        }
+      },
+      "deploy_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/deploy-3.3.x.log",
+      "consumer": "passed",
+      "consumer_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/consumer-3.3.x.log",
+      "consumer_repository": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/consumers/3.3.x/repository",
+      "ci_runtime": {
+        "conclusion": "success",
+        "databaseId": 40832450794,
+        "headBranch": "3.3.x",
+        "headSha": "7e9ef023688c6b71679d05ed992ca0a83f40d6a4",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40832450794"
+      },
+      "ci": {
+        "conclusion": "success",
+        "databaseId": 40833986904,
+        "headBranch": "3.3.x",
+        "headSha": "f1964eb0613faabb02517e5dd210b27b1ebcff54",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40833986904"
+      },
+      "remote_sha": "f1964eb0613faabb02517e5dd210b27b1ebcff54",
+      "bytecode_major": 61
+    },
+    "3.4.x": {
+      "baseline": "ce65ed888e6d6880aba63e7627f57bd49042f346",
+      "feature": "feature/REQ-20261029-wandl-ip2region-3-4-x",
+      "version": "3.4.x.20260630-SNAPSHOT",
+      "boot": "3.4.13",
+      "jdk": "17",
+      "maven": "/opt/homebrew/opt/maven/bin/mvn",
+      "java_home": "/Users/wandl/Library/Java/JavaVirtualMachines/corretto-17.0.20.1/Contents/Home",
+      "verify": "passed",
+      "tests": 86,
+      "coverage": 0.9552238805970149,
+      "sha": "90ee78614c72a469a31e1da34f52dc32976b5470",
+      "log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/verify-parent-3.4.x.log",
+      "publish": "passed",
+      "artifacts": {
+        "main.pom": {
+          "filename": "ip2region-spring-boot-starter-3.4.x.20260630-20261029.070909-3.pom",
+          "sha256": "fcc2e337b34f056eddeef246c42a5419ffe19df28988bfbbb7afc21b4021a761",
+          "value": "3.4.x.20260630-20261029.070909-3"
+        },
+        "main.jar": {
+          "filename": "ip2region-spring-boot-starter-3.4.x.20260630-20261029.070909-3.jar",
+          "sha256": "0c65771499ac1389d23458b89f047458cf74dfcd70b273d789b0a5dc18c481fc",
+          "value": "3.4.x.20260630-20261029.070909-3"
+        },
+        "sources.jar": {
+          "filename": "ip2region-spring-boot-starter-3.4.x.20260630-20261029.070909-3-sources.jar",
+          "sha256": "1615c98ebbae73ed74cf9380f1fa4e9938bdbaab631398a3f832f4b92c5cb105",
+          "value": "3.4.x.20260630-20261029.070909-3"
+        },
+        "javadoc.jar": {
+          "filename": "ip2region-spring-boot-starter-3.4.x.20260630-20261029.070909-3-javadoc.jar",
+          "sha256": "ced4429b62adeb1c44fdf0bc12b9cf04c9c20442e68f368f595f45e01970bc29",
+          "value": "3.4.x.20260630-20261029.070909-3"
+        }
+      },
+      "deploy_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/deploy-3.4.x.log",
+      "consumer": "passed",
+      "consumer_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/consumer-3.4.x.log",
+      "consumer_repository": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/consumers/3.4.x/repository",
+      "ci_runtime": {
+        "conclusion": "success",
+        "databaseId": 40832450601,
+        "headBranch": "3.4.x",
+        "headSha": "90ee78614c72a469a31e1da34f52dc32976b5470",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40832450601"
+      },
+      "ci": {
+        "conclusion": "success",
+        "databaseId": 40833987537,
+        "headBranch": "3.4.x",
+        "headSha": "b28ee899d159788d0920d6ca53079c982ba66e6d",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40833987537"
+      },
+      "remote_sha": "b28ee899d159788d0920d6ca53079c982ba66e6d",
+      "bytecode_major": 61
+    },
+    "3.5.x": {
+      "baseline": "dc87759a2dd5c507e80a4ab49c9a014b3be79eaa",
+      "feature": "feature/REQ-20261029-wandl-ip2region-3-5-x",
+      "version": "3.5.x.20260630-SNAPSHOT",
+      "boot": "3.5.16",
+      "jdk": "17",
+      "maven": "/opt/homebrew/opt/maven/bin/mvn",
+      "java_home": "/Users/wandl/Library/Java/JavaVirtualMachines/corretto-17.0.20.1/Contents/Home",
+      "verify": "passed",
+      "tests": 86,
+      "coverage": 0.9552238805970149,
+      "sha": "2a5abd03b10b392930a26ff1e36e29e057b6ef37",
+      "log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/verify-parent-3.5.x.log",
+      "publish": "passed",
+      "artifacts": {
+        "main.pom": {
+          "filename": "ip2region-spring-boot-starter-3.5.x.20260630-20261029.071002-1.pom",
+          "sha256": "a33a845fdd80f413668a93c9526499ab26976bf683b1efcea36cf6c074ec46e8",
+          "value": "3.5.x.20260630-20261029.071002-1"
+        },
+        "main.jar": {
+          "filename": "ip2region-spring-boot-starter-3.5.x.20260630-20261029.071002-1.jar",
+          "sha256": "c34c75b07e00dc6f2d003eb02e8c063b459c6e3d6d6c9ebaf9eabc99618712dd",
+          "value": "3.5.x.20260630-20261029.071002-1"
+        },
+        "sources.jar": {
+          "filename": "ip2region-spring-boot-starter-3.5.x.20260630-20261029.071002-1-sources.jar",
+          "sha256": "825c77cc1ff862e7c6830f00a746bdf54fb5f08f4f67d3939607c3d16535c681",
+          "value": "3.5.x.20260630-20261029.071002-1"
+        },
+        "javadoc.jar": {
+          "filename": "ip2region-spring-boot-starter-3.5.x.20260630-20261029.071002-1-javadoc.jar",
+          "sha256": "53ecb7a02f2d697f89f0c8c938f17366ddcc09ae52b4d479af5cfbdcb35089db",
+          "value": "3.5.x.20260630-20261029.071002-1"
+        }
+      },
+      "deploy_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/deploy-3.5.x.log",
+      "consumer": "passed",
+      "consumer_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/consumer-3.5.x.log",
+      "consumer_repository": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/consumers/3.5.x/repository",
+      "ci_runtime": {
+        "conclusion": "success",
+        "databaseId": 40832453747,
+        "headBranch": "3.5.x",
+        "headSha": "2a5abd03b10b392930a26ff1e36e29e057b6ef37",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40832453747"
+      },
+      "ci": {
+        "conclusion": "success",
+        "databaseId": 40833989642,
+        "headBranch": "3.5.x",
+        "headSha": "26811a38ff84f9e9709cfa7b0b37b1442c2d395d",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40833989642"
+      },
+      "remote_sha": "26811a38ff84f9e9709cfa7b0b37b1442c2d395d",
+      "bytecode_major": 61
+    },
+    "4.0.x": {
+      "baseline": "ba3d8ec49700f2513804b9a9c11aa9923549b9f1",
+      "feature": "feature/REQ-20261029-wandl-ip2region-4-0-x",
+      "version": "4.0.x.20260630-SNAPSHOT",
+      "boot": "4.0.9",
+      "jdk": "21",
+      "maven": "/opt/homebrew/opt/maven/bin/mvn",
+      "java_home": "/Users/wandl/Library/Java/JavaVirtualMachines/ms-21.0.12.1/Contents/Home",
+      "verify": "passed",
+      "tests": 86,
+      "coverage": 0.9552238805970149,
+      "sha": "26388e6567ce2e943131a4aeeeca7ceef14ac6d3",
+      "log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/verify-parent-4.0.x.log",
+      "publish": "passed",
+      "artifacts": {
+        "main.pom": {
+          "filename": "ip2region-spring-boot-starter-4.0.x.20260630-20261029.071035-2.pom",
+          "sha256": "a1d37b4a9d05f8bb1dd20f38a7432ba845bd63ebbe1c5dd24dfcc3b7b096d274",
+          "value": "4.0.x.20260630-20261029.071035-2"
+        },
+        "main.jar": {
+          "filename": "ip2region-spring-boot-starter-4.0.x.20260630-20261029.071035-2.jar",
+          "sha256": "d3fa86deabf0c653d71b1b163a552c52cef18af18dda09477cc3a87b1e771a19",
+          "value": "4.0.x.20260630-20261029.071035-2"
+        },
+        "sources.jar": {
+          "filename": "ip2region-spring-boot-starter-4.0.x.20260630-20261029.071035-2-sources.jar",
+          "sha256": "bfbf6c6463bd30a2d792ecadfdff9da8affadad0be162073c6cd7674581628b9",
+          "value": "4.0.x.20260630-20261029.071035-2"
+        },
+        "javadoc.jar": {
+          "filename": "ip2region-spring-boot-starter-4.0.x.20260630-20261029.071035-2-javadoc.jar",
+          "sha256": "008d2e57ff1f430cbbe19a3ffe7a642e6464e5c480d2363696b2373b45bd0eab",
+          "value": "4.0.x.20260630-20261029.071035-2"
+        }
+      },
+      "deploy_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/deploy-4.0.x.log",
+      "consumer": "passed",
+      "consumer_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/consumer-4.0.x.log",
+      "consumer_repository": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/consumers/4.0.x/repository",
+      "ci_runtime": {
+        "conclusion": "success",
+        "databaseId": 40832454101,
+        "headBranch": "4.0.x",
+        "headSha": "26388e6567ce2e943131a4aeeeca7ceef14ac6d3",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40832454101"
+      },
+      "ci": {
+        "conclusion": "success",
+        "databaseId": 40833987313,
+        "headBranch": "4.0.x",
+        "headSha": "cb52a87b934f44c535d9237e8142b54f1cf53adc",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40833987313"
+      },
+      "remote_sha": "cb52a87b934f44c535d9237e8142b54f1cf53adc",
+      "bytecode_major": 65
+    },
+    "4.1.x": {
+      "baseline": "8e698f5c61bea3c2b95aaabd38fb2f6a6ae0db15",
+      "feature": "feature/REQ-20261029-wandl-ip2region-4-1-x",
+      "version": "4.1.x.20260630-SNAPSHOT",
+      "boot": "4.1.2",
+      "jdk": "21",
+      "maven": "/Users/wandl/.m2/wrapper/dists/apache-maven-4.0.0-rc-5/1d86e591/bin/mvn",
+      "java_home": "/Users/wandl/Library/Java/JavaVirtualMachines/ms-21.0.12.1/Contents/Home",
+      "verify": "passed",
+      "tests": 86,
+      "coverage": 0.9552238805970149,
+      "sha": "5f3a2e7687ef477eaeeccfce545368d537bb3737",
+      "log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/verify-4.1.x.log",
+      "publish": "passed",
+      "artifacts": {
+        "main.pom": {
+          "filename": "ip2region-spring-boot-starter-4.1.x.20260630-20261029.071107-1.pom",
+          "sha256": "8ba5bbcade414de93ab227f6fb5664a47bdec882ca5097d8cf150c4d2a96f61e",
+          "value": "4.1.x.20260630-20261029.071107-1"
+        },
+        "main.jar": {
+          "filename": "ip2region-spring-boot-starter-4.1.x.20260630-20261029.071107-1.jar",
+          "sha256": "ea6e16069d47d1e3efa74ec32aecae6fd8a88904b3a8510f03071c1d010b7d1e",
+          "value": "4.1.x.20260630-20261029.071107-1"
+        },
+        "sources.jar": {
+          "filename": "ip2region-spring-boot-starter-4.1.x.20260630-20261029.071107-1-sources.jar",
+          "sha256": "af30934e56f245a2d7f0a8f943f34be6267a3ad46d4562325eebbb6cd2ca85b7",
+          "value": "4.1.x.20260630-20261029.071107-1"
+        },
+        "javadoc.jar": {
+          "filename": "ip2region-spring-boot-starter-4.1.x.20260630-20261029.071107-1-javadoc.jar",
+          "sha256": "ba07ad147f910674f0768b8f178bbab7f8aac029a90f7d6b9ae8b80641f8ae86",
+          "value": "4.1.x.20260630-20261029.071107-1"
+        }
+      },
+      "deploy_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/deploy-4.1.x.log",
+      "consumer": "passed",
+      "consumer_log": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/logs/consumer-4.1.x.log",
+      "consumer_repository": "/var/folders/_s/9_xnnkz141920t1yv5zhvd1r0000gn/T/ip2region-release-20261029-wb9turti/consumers/4.1.x/repository",
+      "ci_runtime": {
+        "conclusion": "success",
+        "databaseId": 40832452321,
+        "headBranch": "4.1.x",
+        "headSha": "5f3a2e7687ef477eaeeccfce545368d537bb3737",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40832452321"
+      },
+      "ci": {
+        "conclusion": "success",
+        "databaseId": 40833988690,
+        "headBranch": "4.1.x",
+        "headSha": "9044992c142fc60d0fb99232aab8f8f7dce775e3",
+        "status": "completed",
+        "url": "https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/40833988690"
+      },
+      "remote_sha": "9044992c142fc60d0fb99232aab8f8f7dce775e3",
+      "bytecode_major": 65
+    }
+  },
+  "source_sha_description": "移植起点；实际发布源码以每条维护线 sha 为准。后续 README 提交不改变运行代码或 POM。",
+  "production_source_fingerprint": "271bc54caa9908f2dc6b60667e94652ac91593e8f37b0a1ca5baeae50483dd04",
+  "database_fingerprint": "5035841c69efe942ad44f6ee205523a72ccebfc80cca49abdf827ee9864bada0"
+}
