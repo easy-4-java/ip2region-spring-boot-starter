@@ -26,6 +26,7 @@ import java.util.Objects;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 @Slf4j
+/**\n * Template for IP to region lookup using ip2region library.\n *\n * @author <a href="https://github.com/loong10k">Loong Wan</a>\n * @since 1.0.0\n */
 public class IP2regionTemplate implements DisposableBean {
 
 	protected ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
@@ -34,14 +35,27 @@ public class IP2regionTemplate implements DisposableBean {
 	public IP2regionTemplate(XdbSearcher xdbSearcher) throws IOException {
 		this.xdbSearcher = xdbSearcher;
 	}
+	/**
+	 * <p>Memory search.</p>
+	 * @param ip the ip
+	 * @return the string
+	 * @throws IOException if an error occurs
+	 */
 
 	public String memorySearch(long ip) throws IOException {
 		return xdbSearcher.memorySearch(ip);
 	}
+	/**
+	 * <p>Memory search.</p>
+	 * @param ip the ip
+	 * @return the string
+	 * @throws IOException if an error occurs
+	 */
 
 	public String memorySearch(String ip) throws IOException {
 		return xdbSearcher.memorySearch(ip);
 	}
+	/** Gets the region. */
 
 	public String getRegion(String ip) {
 		try {
@@ -55,6 +69,7 @@ public class IP2regionTemplate implements DisposableBean {
 			rwl.readLock().unlock();
 		}
 	}
+	/** Gets the region address. */
 
 	public RegionAddress getRegionAddress(String ip) {
 		try {
@@ -69,6 +84,7 @@ public class IP2regionTemplate implements DisposableBean {
 			rwl.readLock().unlock();
 		}
 	}
+	/** Gets the region by ip. */
 
 	public RegionEnum getRegionByIp(String ip) {
 		try {
@@ -80,6 +96,9 @@ public class IP2regionTemplate implements DisposableBean {
 				return RegionEnum.UK;
 			}
 			RegionAddress address = new RegionAddress(regionArr);
+			if (RegionAddress.isOfficialV4Format(regionArr)) {
+				return RegionEnum.getByCode2(regionArr[4]);
+			}
 			return RegionEnum.getByRegionAddress(address);
 		} catch (Exception e) {
 			log.error(" IP : {} >> Country/Region Parser Error：{}", ip, e.getMessage());
@@ -88,6 +107,7 @@ public class IP2regionTemplate implements DisposableBean {
 			rwl.readLock().unlock();
 		}
 	}
+	/** Gets the country by ip. */
 
 	public String getCountryByIp(String ip) {
 		try {
@@ -103,6 +123,11 @@ public class IP2regionTemplate implements DisposableBean {
 			rwl.readLock().unlock();
 		}
 	}
+	/**
+	 * <p>Is mainland ip.</p>
+	 * @param ip the ip
+	 * @return the boolean
+	 */
 
 	public boolean isMainlandIp(String ip) {
 		RegionEnum regionEnum = this.getRegionByIp(ip);
@@ -111,6 +136,10 @@ public class IP2regionTemplate implements DisposableBean {
 				RegionEnum.MO.compareTo(regionEnum) != 0 &&
 				RegionEnum.TW.compareTo(regionEnum) != 0;
 	}
+	/**
+	 * <p>Destroy.</p>
+	 * @throws Exception if an error occurs
+	 */
 
 	@Override
 	public void destroy() throws Exception {
