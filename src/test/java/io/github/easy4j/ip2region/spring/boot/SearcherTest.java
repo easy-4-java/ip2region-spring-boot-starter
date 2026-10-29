@@ -1,6 +1,8 @@
 package io.github.easy4j.ip2region.spring.boot;
 
 import org.lionsoul.ip2region.xdb.Searcher;
+import org.lionsoul.ip2region.xdb.LongByteArray;
+import org.lionsoul.ip2region.xdb.Version;
 import java.io.*;
 import java.util.concurrent.TimeUnit;
 
@@ -9,7 +11,7 @@ public class SearcherTest {
         String dbPath = "D:\\tmp\\ip2region-2.11.0\\data\\ip2region.xdb";
 
         // 1、从 dbPath 加载整个 xdb 到内存。
-        byte[] cBuff;
+        LongByteArray cBuff;
         try {
             cBuff = Searcher.loadContentFromFile(dbPath);
         } catch (Exception e) {
@@ -20,7 +22,7 @@ public class SearcherTest {
         // 2、使用上述的 cBuff 创建一个完全基于内存的查询对象。
         Searcher searcher;
         try {
-            searcher = Searcher.newWithBuffer(cBuff);
+            searcher = Searcher.newWithBuffer(Version.IPv4, cBuff);
         } catch (Exception e) {
             System.out.printf("failed to create content cached searcher: %s\n", e);
             return;
