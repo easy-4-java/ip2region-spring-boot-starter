@@ -55,7 +55,7 @@
 | 依赖 | 最低版本 | 证据来源 |
 |---|---:|---|
 | JDK | `17` | `pom.xml` |
-| Spring Boot | `3.4.7` | `pom.xml` parent |
+| Spring Boot | `3.4.13` | `pom.xml` parent |
 | Maven | `3.9.16` | `pom.xml` |
 
 ## 4. 自动装配
