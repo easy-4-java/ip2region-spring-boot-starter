@@ -30,10 +30,9 @@ public class IP2regionAutoConfiguration implements ResourceLoaderAware {
 
 	@Bean
 	public XdbSearcher xdbSearcher(IP2regionProperties properties) throws IOException {
-		if (properties.isExternal()) {
-			return new XdbSearcher(resourceLoader, properties.getLocation());
-		}
-		return new XdbSearcher(resourceLoader);
+        String ipv4Location = properties.isExternal() ? properties.getLocation() : XdbSearcher.DEFAULT_LOCATION;
+        return new XdbSearcher(resourceLoader, ipv4Location, properties.isIpv6Enabled(),
+                properties.getIpv6Location());
 	}
 	/**
 	 * <p>Ip2region template.</p>

@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.1.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 http://maven.apache.org/xsd/maven-4.1.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.1.0</modelVersion>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.1.0-M4</version>
+        <version>4.1.2</version>
         <relativePath/>
     </parent>
 
@@ -54,14 +54,14 @@
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven.version>3.9.9</maven.version>
+        <maven.version>4.0.0-rc-5</maven.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Third-Party Dependencies -->
         <commons-io.version>2.22.0</commons-io.version>
-        <ip2region.version>2.7.0</ip2region.version>
+        <ip2region.version>3.3.7</ip2region.version>
         <slf4j.version>2.0.18</slf4j.version>
-        <spring-boot.version>4.1.0-M4</spring-boot.version>
+        <spring-boot.version>4.1.2</spring-boot.version>
         <!-- Maven Plugin Dependencies -->
         <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
         <maven-central-publishing-plugin.version>0.11.0</maven-central-publishing-plugin.version>
@@ -408,6 +408,10 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>

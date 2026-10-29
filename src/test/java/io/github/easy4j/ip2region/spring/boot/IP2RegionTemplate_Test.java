@@ -5,7 +5,7 @@ import io.github.easy4j.ip2region.spring.boot.ext.RegionEnum;
 import io.github.easy4j.ip2region.spring.boot.ext.XdbSearcher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
@@ -26,7 +26,7 @@ public class IP2RegionTemplate_Test {
         ResourceLoader resourceLoader = new ResourceLoader() {
             @Override
             public Resource getResource(String location) {
-                return new ClassPathResource("ip2region/ip2region.xdb");
+                return new DefaultResourceLoader().getResource(location);
             }
             @Override
             public ClassLoader getClassLoader() {
@@ -35,6 +35,16 @@ public class IP2RegionTemplate_Test {
         };
         XdbSearcher xdbSearcher = new XdbSearcher(resourceLoader);
         template = new IP2regionTemplate(xdbSearcher);
+    }
+
+    @Test
+    public void ipv6CompressedAndExpandedResolveUnitedStates() throws Exception {
+        String compressed = "2001:4860:4860::8888";
+        String expanded = "2001:4860:4860:0000:0000:0000:0000:8888";
+        assertThat(template.memorySearch(compressed)).endsWith("|US");
+        assertThat(template.memorySearch(expanded)).isEqualTo(template.memorySearch(compressed));
+        assertThat(template.getRegionAddress(compressed).getCountry()).isEqualTo("United States");
+        assertThat(template.getRegionByIp(compressed)).isEqualTo(RegionEnum.US);
     }
 
     @Test
@@ -66,6 +76,14 @@ public class IP2RegionTemplate_Test {
     public void getRegionByIpReturnsEnum() {
         RegionEnum regionEnum = template.getRegionByIp("127.0.0.1");
         assertThat(regionEnum).isNotNull();
+    }
+
+    @Test
+    public void bundledOfficialDatabaseResolvesUsAndChina() {
+        assertThat(template.getRegion("8.8.8.8")).isEqualTo("United States|California|0|Google LLC|US");
+        assertThat(template.getRegionAddress("8.8.8.8").getISP()).isEqualTo("Google LLC");
+        assertThat(template.getRegionByIp("8.8.8.8")).isEqualTo(RegionEnum.US);
+        assertThat(template.isMainlandIp("114.114.114.114")).isTrue();
     }
 
     @Test
