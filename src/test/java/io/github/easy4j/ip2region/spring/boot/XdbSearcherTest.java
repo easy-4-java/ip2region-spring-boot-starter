@@ -3,7 +3,7 @@ package io.github.easy4j.ip2region.spring.boot;
 import io.github.easy4j.ip2region.spring.boot.ext.XdbSearcher;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
@@ -23,7 +23,7 @@ public class XdbSearcherTest {
         return new ResourceLoader() {
             @Override
             public Resource getResource(String location) {
-                return new ClassPathResource("ip2region/ip2region.xdb");
+                return new DefaultResourceLoader().getResource(location);
             }
             @Override
             public ClassLoader getClassLoader() {

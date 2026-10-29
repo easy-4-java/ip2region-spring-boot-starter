@@ -59,7 +59,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- Third-Party Dependencies -->
         <commons-io.version>2.22.0</commons-io.version>
-        <ip2region.version>2.7.0</ip2region.version>
+        <ip2region.version>3.3.7</ip2region.version>
         <slf4j.version>2.0.18</slf4j.version>
         <spring-boot.version>4.1.2</spring-boot.version>
         <!-- Maven Plugin Dependencies -->

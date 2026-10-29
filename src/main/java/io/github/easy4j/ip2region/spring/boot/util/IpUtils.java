@@ -1,12 +1,16 @@
 package io.github.easy4j.ip2region.spring.boot.util;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Objects;
+import org.springframework.util.StringUtils;
 import java.util.regex.Pattern;
 
 /**\n * Utility class for IP address operations.\n *\n * @author <a href="https://github.com/loong10k">Loong Wan</a>\n * @since 1.0.0\n */
 public class IpUtils {
 
     protected static Pattern IPV4 = Pattern.compile("^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)$");
-    protected static Pattern IPV6 = Pattern.compile("^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$");
+    protected static Pattern IPV6 = Pattern.compile("[0-9a-fA-F:.]+");
     /**
      * <p>Is ipv4.</p>
      * @param ip4 the ip4
@@ -14,7 +18,7 @@ public class IpUtils {
      */
 
     public static boolean isIpv4(String ip4){
-        return IPV4.matcher(ip4).matches();
+        return Objects.nonNull(ip4) && IPV4.matcher(ip4).matches();
     }
     /**
      * <p>Is ipv6.</p>
@@ -23,7 +27,15 @@ public class IpUtils {
      */
 
     public static boolean isIpv6(String ip6){
-        return IPV6.matcher(ip6).matches();
+        if (!StringUtils.hasText(ip6) || ip6.indexOf(':') < 0 || !IPV6.matcher(ip6).matches()) {
+            return false;
+        }
+        try {
+            InetAddress.getByName(ip6);
+            return true;
+        } catch (UnknownHostException e) {
+            return false;
+        }
     }
     /**
      * <p>Main.</p>

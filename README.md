@@ -124,6 +124,34 @@ Then inject the auto-configured bean in your code:
 private XdbSearcher xdbSearcher;
 ```
 
+### IPv4 / IPv6 dual-stack queries
+
+The Java search dependency is `org.lionsoul:ip2region:3.3.7`. Both bundled databases are loaded by default. Existing string APIs on `IP2regionTemplate` and `XdbSearcher` accept IPv4 and IPv6:
+
+```java
+String ipv4 = ip2regionTemplate.memorySearch("8.8.8.8");
+String ipv6 = ip2regionTemplate.memorySearch("2001:4860:4860::8888");
+RegionAddress address = ip2regionTemplate.getRegionAddress("2001:4860:4860::8888");
+```
+
+Legacy `external/location` properties retain their IPv4 meaning: `location` is ignored when `external=false`. IPv6 configuration is independent of `external`:
+
+```yaml
+ip2region:
+  external: true
+  location: file:/data/ip2region_v4.xdb
+  ipv6-enabled: true
+  ipv6-location: file:/data/ip2region_v6.xdb
+```
+
+`ipv6-enabled` defaults to `true`; `ipv6-location` defaults to `classpath:ip2region/ip2region_v6.xdb`. Disable IPv6 to skip its memory loading. Both resources accept plain file paths, `file:` and `classpath:` locations. Each database must match its address family.
+
+`memorySearch(long)` remains IPv4-only, with range `0..4294967295`. String queries accept IP literals, including compressed and expanded IPv6; hostnames, brackets and zone IDs are rejected. IPv4-mapped IPv6 uses the IPv4 database. Invalid input throws `IOException` from `memorySearch`; template convenience methods retain their fallback behavior. Database loading errors are logged and return `NOT_MATCH` only for the affected family. Successful application startup does not prove both databases loaded successfully.
+
+Full-memory queries support concurrent access. Queries after shutdown return `NOT_MATCH`; hot reload is not provided. The raw databases total approximately 46 MiB, increasing the JAR and memory footprint. Both existing constructors remain and enable bundled IPv6 by default. Direct consumers of upstream `Searcher` must adapt to its 3.x API; starter query signatures remain unchanged.
+
+The IPv6 database is pinned to [upstream v3.18.0](https://github.com/lionsoul2014/ip2region/blob/v3.18.0/data/ip2region_v6.xdb), SHA-256 `939f6b46bd2b8bec3cf7c5ceb8ba782266ae9b1f35b5ba7916700dec0b7506ed`. Refer to upstream for data licensing.
+
 ## 7. Configuration Reference
 
 ### 7.1 Config Prefix
@@ -136,6 +164,8 @@ private XdbSearcher xdbSearcher;
 |---|---|---|:---:|---|:---:|
 | `ip2region.external` | boolean | `false` | No | Load a custom XDB file | No |
 | `ip2region.location` | string | `classpath:ip2region/ip2region.xdb` | No | XDB resource location | No |
+| `ip2region.ipv6-enabled` | boolean | `true` | No | Enable IPv6 | No |
+| `ip2region.ipv6-location` | string | `classpath:ip2region/ip2region_v6.xdb` | No | IPv6 XDB resource | No |
 
 ## 8. Version Lines and Compatibility
 
@@ -143,7 +173,7 @@ private XdbSearcher xdbSearcher;
 |---|---:|---:|---|:---:|
 | `2.3.x` / `2.7.x` | `8+` | 2.3.x / 2.7.x | `1.0.x` | Maintenance |
 | `3.0.x` ~ `3.5.x` | `17` | 3.x | `2.0.x` | Maintenance |
-| `4.0.x` / `4.1.x` | 4.1.x: `21` | 4.x | 4.1.x: `2.7.0` | Active |
+| `4.0.x` / `4.1.x` | 4.1.x: `21` | 4.x | 4.1.x: `3.3.7` | Active |
 
 ## 9. Build and Test
 
