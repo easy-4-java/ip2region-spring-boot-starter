@@ -1,0 +1,52 @@
+package io.github.easy4j.ip2region.spring.boot.util;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Objects;
+import org.springframework.util.StringUtils;
+import java.util.regex.Pattern;
+
+/**\n * Utility class for IP address operations.\n *\n * @author <a href="https://github.com/loong10k">Loong Wan</a>\n * @since 1.0.0\n */
+public class IpUtils {
+
+    protected static Pattern IPV4 = Pattern.compile("^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)\\.){3}(25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)$");
+    protected static Pattern IPV6 = Pattern.compile("[0-9a-fA-F:.]+");
+    /**
+     * <p>Is ipv4.</p>
+     * @param ip4 the ip4
+     * @return the static boolean
+     */
+
+    public static boolean isIpv4(String ip4){
+        return Objects.nonNull(ip4) && IPV4.matcher(ip4).matches();
+    }
+    /**
+     * <p>Is ipv6.</p>
+     * @param ip6 the ip6
+     * @return the static boolean
+     */
+
+    public static boolean isIpv6(String ip6){
+        if (!StringUtils.hasText(ip6) || ip6.indexOf(':') < 0 || !IPV6.matcher(ip6).matches()) {
+            return false;
+        }
+        try {
+            InetAddress.getByName(ip6);
+            return true;
+        } catch (UnknownHostException e) {
+            return false;
+        }
+    }
+    /**
+     * <p>Main.</p>
+     * @param args the args
+     */
+
+    public static void main(String[] args) {
+        System.out.println(IpUtils.isIpv6("1610329044 "));
+        System.out.println(IpUtils.isIpv6("192.168.2.10"));
+        System.out.println(IpUtils.isIpv6("fe80:1295:8030:1fc6:57fa:0000:0000:1fc6"));
+        System.out.println(IpUtils.isIpv6("fe80:1295:8030:1fc6:57fa:0000:0000:8030"));
+    }
+
+}
