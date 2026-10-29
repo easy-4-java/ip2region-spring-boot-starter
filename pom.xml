@@ -47,17 +47,27 @@
     </developers>
 
     <distributionManagement>
-
-        <snapshotRepository>
-            <id>ossrh</id>
-            <name>Maven Snapshots Repository</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
         <repository>
-            <id>ossrh</id>
-            <name>Maven Central Staging Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-          </repository>
+            <id>2624322-release-6F6h6R</id>
+            <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-release-6f6h6r</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <snapshotRepository>
+            <id>2624322-snapshot-3EoOv3</id>
+            <url>https://packages.aliyun.com/6927b116e6c3e0425dbdf60d/maven/2624322-snapshot-3eoov3</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <uniqueVersion>true</uniqueVersion>
+        </snapshotRepository>
     </distributionManagement>
 
     <build>
@@ -249,9 +259,13 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
             <!--环境检查插件：代码编译前的环境检查 -->
             <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-enforcer-plugin -->
-            
+
                         <!-- 单元测试覆盖率插件: 强制要求 90% 覆盖率 -->
             <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
             <plugin>
@@ -478,7 +492,7 @@
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
         <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
         <maven-nexus-staging-plugin.version>1.6.8</maven-nexus-staging-plugin.version>
-        <ip2region.version>2.7.0</ip2region.version>
+        <ip2region.version>3.3.7</ip2region.version>
                 <commons-io.version>2.22.0</commons-io.version>
                 <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
                 <junit.version>4.13.2</junit.version>
@@ -597,11 +611,7 @@
         </dependency>
 
             <!-- For JUnit -->
-            <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <!-- For Commons IO -->
         <dependency>
             <groupId>commons-io</groupId>
