@@ -3,22 +3,25 @@ package io.github.easy4j.ip2region.spring.boot;
 import io.github.easy4j.ip2region.spring.boot.ext.RegionAddress;
 import io.github.easy4j.ip2region.spring.boot.ext.RegionEnum;
 import io.github.easy4j.ip2region.spring.boot.ext.XdbSearcher;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.test.context.event.annotation.BeforeTestMethod;
+import org.springframework.core.io.DefaultResourceLoader;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class IP2RegionTemplate_Test {
 
 	IP2regionTemplate template = null;
 
-	@BeforeTestMethod
+	@BeforeEach
 	public void setUp()  throws Exception {
-		String dbPath = "D:\\data\\ip2region.xdb";
-		XdbSearcher xdbSearcher = new XdbSearcher(null, dbPath);
+		XdbSearcher xdbSearcher = new XdbSearcher(new DefaultResourceLoader(), XdbSearcher.DEFAULT_LOCATION);
 		template = new IP2regionTemplate(xdbSearcher);
 	}
 
 	@Test
 	public void templateTest() throws Exception {
+		assertThat(template.getRegion("8.8.8.8")).isEqualTo("美国|0|0|0|Level3");
 
 		System.out.println(template.memorySearch("127.0.0.1"));
 		System.out.println(template.memorySearch("114.124.146.103"));
