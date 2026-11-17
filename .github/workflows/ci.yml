@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [2.3.x, 2.7.x, 3.0.x, 3.1.x, 3.2.x, 3.3.x, 3.4.x, 3.5.x, 4.0.x, 4.1.x]
+    branches: [main, 'test/*', 2.3.x, 2.7.x, 3.0.x, 3.1.x, 3.2.x, 3.3.x, 3.4.x, 3.5.x, 4.0.x, 4.1.x]
   pull_request:
-    branches: [2.3.x, 2.7.x, 3.0.x, 3.1.x, 3.2.x, 3.3.x, 3.4.x, 3.5.x, 4.0.x, 4.1.x]
+    branches: [main, 'test/*', 2.3.x, 2.7.x, 3.0.x, 3.1.x, 3.2.x, 3.3.x, 3.4.x, 3.5.x, 4.0.x, 4.1.x]
 
 permissions:
   contents: read
@@ -12,4 +12,6 @@ permissions:
 jobs:
   build:
     uses: easy-4-java/.github/.github/workflows/maven-starter-ci.yml@main
+    with:
+      version-line: ${{ (github.base_ref == 'main' || startsWith(github.base_ref, 'test/') || github.ref_name == 'main' || startsWith(github.ref_name, 'test/')) && '2.7.x' || github.base_ref || github.ref_name }}
     secrets: inherit

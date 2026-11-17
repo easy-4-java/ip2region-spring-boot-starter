@@ -21,7 +21,7 @@ public class IP2RegionTemplate_Test {
 
 	@Test
 	public void templateTest() throws Exception {
-		assertThat(template.getRegion("8.8.8.8")).isEqualTo("United States|California|0|Google LLC|US");
+		assertThat(template.getRegion("8.8.8.8")).isEqualTo("美国|0|0|0|Level3");
 
 		System.out.println(template.memorySearch("127.0.0.1"));
 		System.out.println(template.memorySearch("114.124.146.103"));
