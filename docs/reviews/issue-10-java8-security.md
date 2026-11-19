@@ -49,3 +49,9 @@ Safer 在 [e9e0c81](https://github.com/easy-4-java/ip2region-spring-boot-starter
 HeroDevs NES 的 Boot 2.7 版本线支持 Java 8。Boot 修复候选下限为 `org.springframework.boot:spring-boot-starter-parent:pom:2.7.18-spring-boot-2.7.40`。发布记录显示，2.7.25、2.7.38 和 2.7.40 分别修复了本 Issue 所列的三条 Boot 公告。Framework 建议评估 `org.springframework:spring-framework-bom:pom:5.3.39-spring-framework-5.3.54`，其发布记录明确列出 CVE-2026-41848 至 CVE-2026-41852。两套候选仍需在实际解析到的完整依赖树上验证。[Boot 发布记录](https://docs.herodevs.com/spring/release-notes/spring-boot-2-7) · [Framework 发布记录](https://docs.herodevs.com/spring/release-notes/spring-framework-5-3)
 
 按官方试用方式实测，公开的 Boot 2.7.21 试用 POM 返回 HTTP 200，发布时间早于本 Issue 所列的 2026 年 Boot 修复。正式 2.7.40 和 2.7.44 POM 在无订阅凭据的请求中均返回 HTTP 401。现有证据只证明试用制品可取。正式验证需取得允许读取候选版本的 Maven 仓库权限，并确保项目 CI 和该公开 Starter 的消费方能解析所选制品。[官方试用说明](https://docs.herodevs.com/spring/spring-boot-2-x-portfolio/spring-boot-2-7/trial)
+
+## SAS 补丁和代码托管发布附件
+
+SAS 的 M3P010 清单列出多个 Spring Framework 5.3.49 运行时 JAR。替代它的 M3P012 清单列出 Framework 5.3.52 的运行时 JAR。两份清单均未列出 Boot 2.7.34 模块或 Maven 父 POM、BOM。SAS 下载页明确要求已有 SAS 软件许可，核查仅使用公开清单。[SAS 下载条款](https://tshf.sas.com/techsup/download/hotfix/HF2/M3P.html) · [M3P010 清单](https://tshf.sas.com/techsup/download/hotfix/HF2/M/M3P/M3P010/xx/prt/M3P010pt_manifest.html) · [M3P012 清单](https://tshf.sas.com/techsup/download/hotfix/HF2/M/M3P/M3P012/xx/prt/M3P012pt_manifest.html)
+
+GitHub 的公开仓库和精确文件名搜索未找到所需的完整发布附件。发现的 Framework 5.3.49 第三方回移仓库只有源码，GitHub API 返回空的 Releases 与 Tags 列表。Gitee 公开项目搜索按两条目标版本名均返回零结果。缺少完整候选制品，本轮未进入 Java 8 构建验收。[GitHub 回移仓库](https://github.com/meimingqi222/spring-framework-5.3.49-security-backport)
