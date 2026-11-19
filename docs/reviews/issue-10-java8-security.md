@@ -63,7 +63,7 @@ Spring Framework 从第三方 Apache 2.0 回移树 `16a56ef8631a2203fdf9a3a6aec3
 | 组件 | 制品版本 | 实际验证 |
 | --- | --- | --- |
 | Spring Framework | `5.3.49-easy4j-review.1` | Core、Context 和 Expression 的 JDK 8 测试共 7,835 项，其中 65 项跳过、零失败 |
-| Spring Boot | `2.7.18-easy4j-review.1` | 原工程三模块的回移回归共 59 项全部通过。独立 JDK 8 验证同一补丁源码的 59 项也全部通过 |
+| Spring Boot | `2.7.18-easy4j-review.1` | 原工程三模块的回移回归共 59 项全部通过。独立 JDK 8 工程分别对补丁源码及已安装的回移 JAR 执行同一组 59 项回归，均全部通过。JAR 回归夹具使用公开的 5.3.39 Web 模块，Boot、Core、Context 和 Expression 使用此候选本地制品 |
 | ip2region | `2.0.x.20260630-SNAPSHOT` | Corretto 8u504 的 `clean install` 通过。独立消费应用通过默认 XDB 查询和仅指定位置时的行为检查 |
 
 从 Maven 实际解析的构建依赖生成 45 组件的 CycloneDX SBOM。OSV 原始结果保留以下三条 Boot 告警。补丁来源和测试已核对，扫描器按版本范围匹配，原始扫描仍未达到零告警。
@@ -75,3 +75,5 @@ Spring Framework 从第三方 Apache 2.0 回移树 `16a56ef8631a2203fdf9a3a6aec3
 | CVE-2026-41001 | [Artemis 补丁](https://github.com/spring-projects/spring-boot/commit/4218bd76e934e5cf9e3fd3997c67b8a6b0d0c111) | 内置 Artemis 的目录配置 |
 
 [复现步骤](issue-10-backport/README.md)保存源码输入、回移补丁和本地 Maven 构建命令。现有制品保存在本地隔离仓库，远端 CI 和下游应用仍需可解析的制品来源。Issue 保持开放。
+
+本地 Maven 制品包包含 20 个模块的 89 个文件及逐文件 SHA-256 清单。ZIP 的 SHA-256 为 `c511cf537a355a93e32a215c5340b5e2cc70c7f16212d5b15df62c8a163cc7d3`。
