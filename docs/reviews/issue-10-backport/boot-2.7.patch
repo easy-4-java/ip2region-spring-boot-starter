@@ -1,0 +1,327 @@
+diff --git a/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/reactive/EndpointRequest.java b/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/reactive/EndpointRequest.java
+index 8a6d7d04..a3bae095 100644
+--- a/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/reactive/EndpointRequest.java
++++ b/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/reactive/EndpointRequest.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright 2012-2023 the original author or authors.
++ * Copyright 2012-2025 the original author or authors.
+  *
+  * Licensed under the Apache License, Version 2.0 (the "License");
+  * you may not use this file except in compliance with the License.
+@@ -219,11 +219,18 @@ public final class EndpointRequest {
+ 			if (this.includeLinks && StringUtils.hasText(pathMappedEndpoints.getBasePath())) {
+ 				delegateMatchers.add(new PathPatternParserServerWebExchangeMatcher(pathMappedEndpoints.getBasePath()));
+ 			}
++			if (delegateMatchers.isEmpty()) {
++				return EMPTY_MATCHER;
++			}
+ 			return new OrServerWebExchangeMatcher(delegateMatchers);
+ 		}
+ 
+ 		private Stream<String> streamPaths(List<Object> source, PathMappedEndpoints pathMappedEndpoints) {
+-			return source.stream().filter(Objects::nonNull).map(this::getEndpointId).map(pathMappedEndpoints::getPath);
++			return source.stream()
++				.filter(Objects::nonNull)
++				.map(this::getEndpointId)
++				.map(pathMappedEndpoints::getPath)
++				.filter(Objects::nonNull);
+ 		}
+ 
+ 		@Override
+@@ -232,9 +239,12 @@ public final class EndpointRequest {
+ 		}
+ 
+ 		private List<ServerWebExchangeMatcher> getDelegateMatchers(Set<String> paths) {
+-			return paths.stream()
+-				.map((path) -> new PathPatternParserServerWebExchangeMatcher(path + "/**"))
+-				.collect(Collectors.toList());
++			return paths.stream().map(this::getDelegateMatcher).collect(Collectors.toCollection(ArrayList::new));
++		}
++
++		private PathPatternParserServerWebExchangeMatcher getDelegateMatcher(String path) {
++			Assert.notNull(path, "'path' must not be null");
++			return new PathPatternParserServerWebExchangeMatcher(path + "/**");
+ 		}
+ 
+ 		@Override
+diff --git a/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/servlet/EndpointRequest.java b/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/servlet/EndpointRequest.java
+index b914a321..fa2b489d 100644
+--- a/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/servlet/EndpointRequest.java
++++ b/spring-boot-project/spring-boot-actuator-autoconfigure/src/main/java/org/springframework/boot/actuate/autoconfigure/security/servlet/EndpointRequest.java
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright 2012-2023 the original author or authors.
++ * Copyright 2012-2025 the original author or authors.
+  *
+  * Licensed under the Apache License, Version 2.0 (the "License");
+  * you may not use this file except in compliance with the License.
+@@ -241,11 +241,18 @@ public final class EndpointRequest {
+ 			if (this.includeLinks && StringUtils.hasText(basePath)) {
+ 				delegateMatchers.addAll(getLinksMatchers(requestMatcherFactory, matcherProvider, basePath));
+ 			}
++			if (delegateMatchers.isEmpty()) {
++				return EMPTY_MATCHER;
++			}
+ 			return new OrRequestMatcher(delegateMatchers);
+ 		}
+ 
+ 		private Stream<String> streamPaths(List<Object> source, PathMappedEndpoints pathMappedEndpoints) {
+-			return source.stream().filter(Objects::nonNull).map(this::getEndpointId).map(pathMappedEndpoints::getPath);
++			return source.stream()
++				.filter(Objects::nonNull)
++				.map(this::getEndpointId)
++				.map(pathMappedEndpoints::getPath)
++				.filter(Objects::nonNull);
+ 		}
+ 
+ 		private List<RequestMatcher> getDelegateMatchers(RequestMatcherFactory requestMatcherFactory,
+@@ -316,6 +323,7 @@ public final class EndpointRequest {
+ 		RequestMatcher antPath(RequestMatcherProvider matcherProvider, String... parts) {
+ 			StringBuilder pattern = new StringBuilder();
+ 			for (String part : parts) {
++				Assert.notNull(part, "'part' must not be null");
+ 				pattern.append(part);
+ 			}
+ 			return matcherProvider.getRequestMatcher(pattern.toString());
+diff --git a/spring-boot-project/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/security/reactive/EndpointRequestTests.java b/spring-boot-project/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/security/reactive/EndpointRequestTests.java
+index 6d8a50ae..a2df06b3 100644
+--- a/spring-boot-project/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/security/reactive/EndpointRequestTests.java
++++ b/spring-boot-project/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/security/reactive/EndpointRequestTests.java
+@@ -102,6 +102,13 @@ class EndpointRequestTests {
+ 		assertMatcher(matcher).matches("/actuator/foo");
+ 	}
+ 
++	@Test
++	void toUnexposedEndpointShouldNotMatch() {
++		ServerWebExchangeMatcher matcher = EndpointRequest.to("unexposed");
++		assertMatcher(matcher).doesNotMatch("/actuator/foo");
++		assertMatcher(matcher).doesNotMatch("/actuator");
++	}
++
+ 	@Test
+ 	void toEndpointIdShouldNotMatchOtherPath() {
+ 		ServerWebExchangeMatcher matcher = EndpointRequest.to("foo");
+diff --git a/spring-boot-project/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/security/servlet/EndpointRequestTests.java b/spring-boot-project/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/security/servlet/EndpointRequestTests.java
+index 72cf454e..e1194660 100644
+--- a/spring-boot-project/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/security/servlet/EndpointRequestTests.java
++++ b/spring-boot-project/spring-boot-actuator-autoconfigure/src/test/java/org/springframework/boot/actuate/autoconfigure/security/servlet/EndpointRequestTests.java
+@@ -112,6 +112,13 @@ class EndpointRequestTests {
+ 		assertMatcher(matcher).matches("/actuator/foo");
+ 	}
+ 
++	@Test
++	void toUnexposedEndpointShouldNotMatch() {
++		RequestMatcher matcher = EndpointRequest.to("unexposed");
++		assertMatcher(matcher).doesNotMatch("/actuator/foo");
++		assertMatcher(matcher).doesNotMatch("/actuator");
++	}
++
+ 	@Test
+ 	void toEndpointIdShouldNotMatchOtherPath() {
+ 		RequestMatcher matcher = EndpointRequest.to("foo");
+diff --git a/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/artemis/ArtemisEmbeddedConfigurationFactory.java b/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/artemis/ArtemisEmbeddedConfigurationFactory.java
+index 81d91c16..b0368459 100644
+--- a/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/artemis/ArtemisEmbeddedConfigurationFactory.java
++++ b/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jms/artemis/ArtemisEmbeddedConfigurationFactory.java
+@@ -16,8 +16,6 @@
+ 
+ package org.springframework.boot.autoconfigure.jms.artemis;
+ 
+-import java.io.File;
+-
+ import org.apache.activemq.artemis.api.core.QueueConfiguration;
+ import org.apache.activemq.artemis.api.core.RoutingType;
+ import org.apache.activemq.artemis.api.core.SimpleString;
+@@ -31,6 +29,8 @@ import org.apache.activemq.artemis.core.settings.impl.AddressSettings;
+ import org.apache.commons.logging.Log;
+ import org.apache.commons.logging.LogFactory;
+ 
++import org.springframework.boot.system.ApplicationTemp;
++
+ /**
+  * Configuration used to create the embedded Artemis server.
+  *
+@@ -85,8 +85,7 @@ class ArtemisEmbeddedConfigurationFactory {
+ 		if (this.properties.getDataDirectory() != null) {
+ 			return this.properties.getDataDirectory();
+ 		}
+-		String tempDirectory = System.getProperty("java.io.tmpdir");
+-		return new File(tempDirectory, "artemis-data").getAbsolutePath();
++		return new ApplicationTemp().getDir("artemis-data").getAbsolutePath();
+ 	}
+ 
+ }
+diff --git a/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/system/ApplicationTemp.java b/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/system/ApplicationTemp.java
+index 9eff8ffe..3830c7bc 100644
+--- a/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/system/ApplicationTemp.java
++++ b/spring-boot-project/spring-boot/src/main/java/org/springframework/boot/system/ApplicationTemp.java
+@@ -18,13 +18,17 @@ package org.springframework.boot.system;
+ 
+ import java.io.File;
+ import java.io.IOException;
++import java.io.UncheckedIOException;
+ import java.nio.file.FileSystem;
+ import java.nio.file.Files;
++import java.nio.file.LinkOption;
+ import java.nio.file.Path;
+ import java.nio.file.Paths;
+ import java.nio.file.attribute.FileAttribute;
++import java.nio.file.attribute.PosixFileAttributes;
+ import java.nio.file.attribute.PosixFilePermission;
+ import java.nio.file.attribute.PosixFilePermissions;
++import java.nio.file.attribute.UserPrincipal;
+ import java.security.MessageDigest;
+ import java.util.EnumSet;
+ 
+@@ -50,6 +54,8 @@ public class ApplicationTemp {
+ 
+ 	private final Class<?> sourceClass;
+ 
++	private final UserPrincipal directoryOwner;
++
+ 	private volatile Path path;
+ 
+ 	/**
+@@ -65,6 +71,22 @@ public class ApplicationTemp {
+ 	 */
+ 	public ApplicationTemp(Class<?> sourceClass) {
+ 		this.sourceClass = sourceClass;
++		this.directoryOwner = directoryOwner();
++	}
++
++	private static UserPrincipal directoryOwner() {
++		try {
++			Path tempFile = Files.createTempFile("application-temp", "-owner");
++			UserPrincipal owner = Files.getOwner(tempFile);
++			Files.delete(tempFile);
++			return owner;
++		}
++		catch (UnsupportedOperationException ex) {
++			return null;
++		}
++		catch (IOException ex) {
++			throw new UncheckedIOException(ex);
++		}
+ 	}
+ 
+ 	@Override
+@@ -101,8 +123,30 @@ public class ApplicationTemp {
+ 
+ 	private Path createDirectory(Path path) {
+ 		try {
+-			if (!Files.exists(path)) {
+-				Files.createDirectory(path, getFileAttributes(path.getFileSystem(), DIRECTORY_PERMISSIONS));
++			FileSystem fileSystem = path.getFileSystem();
++			if (!Files.exists(path, LinkOption.NOFOLLOW_LINKS)) {
++				Files.createDirectory(path, asFileAttributes(fileSystem, DIRECTORY_PERMISSIONS));
++			}
++			else {
++				if (supportsPosixView(fileSystem)) {
++					PosixFileAttributes attributes = Files.readAttributes(path, PosixFileAttributes.class,
++							LinkOption.NOFOLLOW_LINKS);
++					Assert.state(attributes.isDirectory(),
++							() -> "'" + path + "' already exists but it is not a directory");
++					Assert.state(DIRECTORY_PERMISSIONS.equals(attributes.permissions()), () -> "Existing directory '"
++							+ path + "' does not have the permissions " + DIRECTORY_PERMISSIONS);
++					assertDirectoryOwnership(attributes.owner(), path);
++				}
++				else {
++					Assert.state(Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS),
++							() -> "'" + path + "' already exists but it is not a directory");
++					try {
++						assertDirectoryOwnership(Files.getOwner(path, LinkOption.NOFOLLOW_LINKS), path);
++					}
++					catch (UnsupportedOperationException ex) {
++						// Ownership check not supported. Continue.
++					}
++				}
+ 			}
+ 			return path;
+ 		}
+@@ -111,13 +155,22 @@ public class ApplicationTemp {
+ 		}
+ 	}
+ 
+-	private FileAttribute<?>[] getFileAttributes(FileSystem fileSystem, EnumSet<PosixFilePermission> ownerReadWrite) {
+-		if (!fileSystem.supportedFileAttributeViews().contains("posix")) {
++	private void assertDirectoryOwnership(UserPrincipal owner, Path path) {
++		Assert.state((this.directoryOwner == null) || this.directoryOwner.equals(owner),
++				() -> "Existing directory '" + path + "' is not owned by " + this.directoryOwner.getName());
++	}
++
++	private FileAttribute<?>[] asFileAttributes(FileSystem fileSystem, EnumSet<PosixFilePermission> ownerReadWrite) {
++		if (!supportsPosixView(fileSystem)) {
+ 			return NO_FILE_ATTRIBUTES;
+ 		}
+ 		return new FileAttribute<?>[] { PosixFilePermissions.asFileAttribute(ownerReadWrite) };
+ 	}
+ 
++	private boolean supportsPosixView(FileSystem fileSystem) {
++		return fileSystem.supportedFileAttributeViews().contains("posix");
++	}
++
+ 	private Path getTempDirectory() {
+ 		String property = System.getProperty("java.io.tmpdir");
+ 		Assert.state(StringUtils.hasLength(property), "No 'java.io.tmpdir' property set");
+diff --git a/spring-boot-project/spring-boot/src/test/java/org/springframework/boot/system/ApplicationTempTests.java b/spring-boot-project/spring-boot/src/test/java/org/springframework/boot/system/ApplicationTempTests.java
+index 1b283a0f..a6be368b 100644
+--- a/spring-boot-project/spring-boot/src/test/java/org/springframework/boot/system/ApplicationTempTests.java
++++ b/spring-boot-project/spring-boot/src/test/java/org/springframework/boot/system/ApplicationTempTests.java
+@@ -23,15 +23,20 @@ import java.nio.file.Files;
+ import java.nio.file.Path;
+ import java.nio.file.attribute.PosixFileAttributeView;
+ import java.nio.file.attribute.PosixFilePermission;
++import java.util.EnumSet;
+ import java.util.Set;
+ 
+ import org.junit.jupiter.api.AfterEach;
++import org.junit.jupiter.api.Assumptions;
+ import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
++import org.junit.jupiter.api.condition.DisabledOnOs;
++import org.junit.jupiter.api.condition.OS;
+ 
+ import org.springframework.util.FileSystemUtils;
+ 
+ import static org.assertj.core.api.Assertions.assertThat;
++import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
+ 
+ /**
+  * Tests for {@link ApplicationTemp}.
+@@ -85,6 +90,35 @@ class ApplicationTempTests {
+ 		}
+ 	}
+ 
++	@Test
++	@DisabledOnOs(OS.WINDOWS)
++	void whenDirectoryExistsWithWrongPermissionsGetDirThrows() throws IOException {
++		ApplicationTemp temp = new ApplicationTemp();
++		Path path = temp.getDir().toPath();
++		Files.getFileAttributeView(path, PosixFileAttributeView.class)
++			.setPermissions(EnumSet.allOf(PosixFilePermission.class));
++		assertThatIllegalStateException().isThrownBy(new ApplicationTemp()::getDir)
++			.withMessageContaining("does not have the permissions");
++		FileSystemUtils.deleteRecursively(path);
++	}
++
++	@Test
++	void whenSymlinkExistsInDirectoryLocationGetDirThrows() throws IOException {
++		ApplicationTemp temp = new ApplicationTemp();
++		Path path = temp.getDir().toPath();
++		FileSystemUtils.deleteRecursively(path);
++		Path linkTarget = Files.createTempDirectory("application-test-tests");
++		try {
++			Files.createSymbolicLink(path, linkTarget);
++		}
++		catch (Exception ex) {
++			Assumptions.assumeTrue(false, "Symlink creation not supported");
++		}
++		assertThatIllegalStateException().isThrownBy(new ApplicationTemp()::getDir)
++			.withMessageContaining("already exists but it is not a directory");
++		FileSystemUtils.deleteRecursively(path);
++	}
++
+ 	private void assertDirectoryPermissions(Path path) throws IOException {
+ 		Set<PosixFilePermission> permissions = Files.getFileAttributeView(path, PosixFileAttributeView.class)
+ 			.readAttributes()

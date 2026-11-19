@@ -1,0 +1,90 @@
+diff --git a/spring-core/src/main/java/org/springframework/util/PatternMatchUtils.java b/spring-core/src/main/java/org/springframework/util/PatternMatchUtils.java
+index 599ef6c..004dd0b 100644
+--- a/spring-core/src/main/java/org/springframework/util/PatternMatchUtils.java
++++ b/spring-core/src/main/java/org/springframework/util/PatternMatchUtils.java
+@@ -16,8 +16,6 @@
+ 
+ package org.springframework.util;
+ 
+-import java.util.Locale;
+-
+ import org.springframework.lang.Nullable;
+ 
+ /**
+@@ -55,14 +53,10 @@ public abstract class PatternMatchUtils {
+ 		if (pattern == null || str == null) {
+ 			return false;
+ 		}
+-		if (caseInsensitive) {
+-			pattern = pattern.toLowerCase(Locale.ROOT);
+-			str = str.toLowerCase(Locale.ROOT);
+-		}
+ 
+ 		int firstIndex = pattern.indexOf('*');
+ 		if (firstIndex == -1) {
+-			return pattern.equals(str);
++			return (caseInsensitive ? pattern.equalsIgnoreCase(str) : pattern.equals(str));
+ 		}
+ 
+ 		if (firstIndex == 0) {
+@@ -71,25 +65,38 @@ public abstract class PatternMatchUtils {
+ 			}
+ 			int nextIndex = pattern.indexOf('*', 1);
+ 			if (nextIndex == -1) {
+-				return str.endsWith(pattern.substring(1));
++				String suffix = pattern.substring(1);
++				return str.regionMatches(caseInsensitive, str.length() - suffix.length(), suffix, 0, suffix.length());
+ 			}
+ 			String part = pattern.substring(1, nextIndex);
+ 			if (part.isEmpty()) {
+-				return simpleMatch(pattern.substring(nextIndex), str, false);
++				return simpleMatch(pattern.substring(nextIndex), str, caseInsensitive);
+ 			}
+-			int partIndex = str.indexOf(part);
++			int partIndex = indexOf(str, part, 0, caseInsensitive);
+ 			while (partIndex != -1) {
+-				if (simpleMatch(pattern.substring(nextIndex), str.substring(partIndex + part.length()), false)) {
++				if (simpleMatch(pattern.substring(nextIndex), str.substring(partIndex + part.length()), caseInsensitive)) {
+ 					return true;
+ 				}
+-				partIndex = str.indexOf(part, partIndex + 1);
++				partIndex = indexOf(str, part, partIndex + 1, caseInsensitive);
+ 			}
+ 			return false;
+ 		}
+ 
+ 		return (str.length() >= firstIndex &&
+-				pattern.startsWith(str.substring(0, firstIndex)) &&
+-				simpleMatch(pattern.substring(firstIndex), str.substring(firstIndex), false));
++				str.regionMatches(caseInsensitive, 0, pattern, 0, firstIndex) &&
++				simpleMatch(pattern.substring(firstIndex), str.substring(firstIndex), caseInsensitive));
++	}
++
++	private static int indexOf(String source, String part, int start, boolean caseInsensitive) {
++		if (!caseInsensitive) {
++			return source.indexOf(part, start);
++		}
++		for (int i = start; i <= source.length() - part.length(); i++) {
++			if (source.regionMatches(true, i, part, 0, part.length())) {
++				return i;
++			}
++		}
++		return -1;
+ 	}
+ 
+ 	/**
+diff --git a/spring-core/src/test/java/org/springframework/util/PatternMatchUtilsTests.java b/spring-core/src/test/java/org/springframework/util/PatternMatchUtilsTests.java
+index a96f21b..8fca470 100644
+--- a/spring-core/src/test/java/org/springframework/util/PatternMatchUtilsTests.java
++++ b/spring-core/src/test/java/org/springframework/util/PatternMatchUtilsTests.java
+@@ -103,4 +103,10 @@ class PatternMatchUtilsTests {
+ 		assertThat(PatternMatchUtils.simpleMatch(pattern, str)).isEqualTo(shouldMatch);
+ 	}
+ 
++	@Test
++	void caseInsensitiveMatchingPreservesUnicodeCaseEquivalence() {
++		assertThat(PatternMatchUtils.simpleMatch("prefix*Σuffix", "Prefix example ςuffix", true)).isTrue();
++		assertThat(PatternMatchUtils.simpleMatch("prefix*Σuffix", "Prefix example ςuffix", false)).isFalse();
++	}
++
+ }
