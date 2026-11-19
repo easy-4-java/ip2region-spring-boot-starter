@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [2.3.x, 2.7.x, 3.0.x, 3.1.x, 3.2.x, 3.3.x, 3.4.x, 3.5.x, 4.0.x, 4.1.x]
+    branches: [2.3.x, 2.7.x, 3.0.x, 3.1.x, 3.2.x, 3.3.x, 3.4.x, 3.5.x, 4.0.x, 4.1.x, "test/**"]
   pull_request:
     branches: [2.3.x, 2.7.x, 3.0.x, 3.1.x, 3.2.x, 3.3.x, 3.4.x, 3.5.x, 4.0.x, 4.1.x]
 
@@ -15,19 +15,23 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
+      - uses: actions/checkout@v7
       - name: Resolve toolchain
         id: toolchain
         env:
           VERSION_LINE: ${{ github.base_ref || github.ref_name }}
         shell: bash
         run: |
+          if [[ "$VERSION_LINE" == test/* ]]; then
+            VERSION_LINE="$(python3 -c 'from xml.etree import ElementTree as E; version = E.parse("pom.xml").getroot().find("{*}version").text; print(".".join(version.split(".")[:3]))')"
+          fi
           case "$VERSION_LINE" in
-            2.3.x|2.7.x) echo "java=8" >> "$GITHUB_OUTPUT" ;;
+            2.0.x|2.3.x|2.7.x) echo "java=8" >> "$GITHUB_OUTPUT" ;;
             3.*) echo "java=17" >> "$GITHUB_OUTPUT" ;;
             4.*) echo "java=21" >> "$GITHUB_OUTPUT" ;;
             *) echo "Unsupported version line: $VERSION_LINE" >&2; exit 1 ;;
           esac
-      - uses: actions/checkout@v7
+          echo "version-line=$VERSION_LINE" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
@@ -43,7 +47,7 @@ jobs:
           printf '%s' "$MAVEN_SETTINGS_XML" > "$HOME/.m2/settings.xml"
       - name: Build and verify with the version-line Maven
         env:
-          VERSION_LINE: ${{ github.base_ref || github.ref_name }}
+          VERSION_LINE: ${{ steps.toolchain.outputs.version-line }}
         shell: bash
         run: |
           if [ "$VERSION_LINE" = "4.1.x" ]; then
