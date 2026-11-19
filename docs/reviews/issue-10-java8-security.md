@@ -43,3 +43,9 @@ Safer 在 [e9e0c81](https://github.com/easy-4-java/ip2region-spring-boot-starter
 默认分支继续支持 Java 8。取得授权的 Spring 企业版制品后，再在该线验证依赖树、应用启动和安全公告。公开 Boot 3.5 与 4.1 线已分别交付，Java 17 的公开依赖线不用于替换默认分支。
 
 独立 Maven 消费应用分别加载默认分支 `699d419` 和 Boot 3.5 `dce32f9` 构建的 Starter JAR，通过正常 `@EnableAutoConfiguration` 启动。每线各 3 项测试通过，覆盖默认 XDB、显式外部配置和单独设置 `ip2region.location`。在默认线单独配置 location 会选择该资源。Boot 3.5 需要同时设置 `external=true` 才选择自定义 IPv4 资源。用缺失文件验证时，选中该资源的查询按既有约定返回 NOT_MATCH。
+
+## 无 Broadcom 制品时的 Java 8 替代来源
+
+HeroDevs NES 的 Boot 2.7 版本线支持 Java 8。Boot 修复候选下限为 `org.springframework.boot:spring-boot-starter-parent:pom:2.7.18-spring-boot-2.7.40`。发布记录显示，2.7.25、2.7.38 和 2.7.40 分别修复了本 Issue 所列的三条 Boot 公告。Framework 建议评估 `org.springframework:spring-framework-bom:pom:5.3.39-spring-framework-5.3.54`，其发布记录明确列出 CVE-2026-41848 至 CVE-2026-41852。两套候选仍需在实际解析到的完整依赖树上验证。[Boot 发布记录](https://docs.herodevs.com/spring/release-notes/spring-boot-2-7) · [Framework 发布记录](https://docs.herodevs.com/spring/release-notes/spring-framework-5-3)
+
+按官方试用方式实测，公开的 Boot 2.7.21 试用 POM 返回 HTTP 200，发布时间早于本 Issue 所列的 2026 年 Boot 修复。正式 2.7.40 和 2.7.44 POM 在无订阅凭据的请求中均返回 HTTP 401。现有证据只证明试用制品可取。正式验证需取得允许读取候选版本的 Maven 仓库权限，并确保项目 CI 和该公开 Starter 的消费方能解析所选制品。[官方试用说明](https://docs.herodevs.com/spring/spring-boot-2-x-portfolio/spring-boot-2-7/trial)
