@@ -37,3 +37,9 @@ Safer 在 [e9e0c81](https://github.com/easy-4-java/ip2region-spring-boot-starter
 [Boot 3.5](https://github.com/easy-4-java/ip2region-spring-boot-starter/pull/15) 和 [Boot 4.1](https://github.com/easy-4-java/ip2region-spring-boot-starter/pull/14) 已合入各自维护分支，合并后分别执行 88 项测试。此前的零发现扫描对应提交 `26811a3` 和 `9044992`。从这些扫描提交到各自当前的 `dce32f9` 和 `c2bc1b8`，GitHub 比对显示变更仅涉及兼容接口、回归测试和 CI，POM 字节内容与扫描基线相同。[Boot 3.5 比对](https://github.com/easy-4-java/ip2region-spring-boot-starter/compare/26811a38ff84f9e9709cfa7b0b37b1442c2d395d...dce32f9c56a71913af4155e7821ea7233156f45b) · [Boot 4.1 比对](https://github.com/easy-4-java/ip2region-spring-boot-starter/compare/9044992c142fc60d0fb99232aab8f8f7dce775e3...c2bc1b8926e0edc5f6c4e9598c99c5fb798aeaa3)
 
 默认线的处置还取决于是否继续承诺 Java 8，以及企业版制品能否取得。迁移到公开 Boot 3.5 版本线要求 Java 17。Issue #10 保持开放。
+
+## 默认线决定与消费验证
+
+默认分支继续支持 Java 8。取得授权的 Spring 企业版制品后，再在该线验证依赖树、应用启动和安全公告。公开 Boot 3.5 与 4.1 线已分别交付，Java 17 的公开依赖线不用于替换默认分支。
+
+独立 Maven 消费应用分别加载默认分支 `699d419` 和 Boot 3.5 `dce32f9` 构建的 Starter JAR，通过正常 `@EnableAutoConfiguration` 启动。每线各 3 项测试通过，覆盖默认 XDB、显式外部配置和单独设置 `ip2region.location`。在默认线单独配置 location 会选择该资源。Boot 3.5 需要同时设置 `external=true` 才选择自定义 IPv4 资源。用缺失文件验证时，选中该资源的查询按既有约定返回 NOT_MATCH。
