@@ -1,0 +1,54 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://github.com/easy-4-java/ip2region-spring-boot-starter/issues/10#boot-review-1",
+  "author": "ip2region #10 backport technical review",
+  "timestamp": "2026-11-23T15:19:09+00:00",
+  "version": 1,
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2025-22235"
+      },
+      "products": [
+        {
+          "@id": "pkg:maven/org.springframework.boot/spring-boot-actuator-autoconfigure@2.7.18-easy4j-review.1",
+          "hashes": {
+            "sha-256": "fe378e2194a585aa9ef4a089d8aa28749f34ebd224a67b0f3f955ef22af5073b"
+          }
+        }
+      ],
+      "status": "fixed",
+      "status_notes": "Backport from https://github.com/spring-projects/spring-boot/commit/55f67c9a522647039fd3294dee5cb83f4888160a. Candidate source 6d24dea934dc1e2297301b78b03de5ce5b89b2ff. The Aliyun Maven artifact matched the verified JAR SHA-256 and passed 47 JDK 8 artifact regression tests."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-40973"
+      },
+      "products": [
+        {
+          "@id": "pkg:maven/org.springframework.boot/spring-boot@2.7.18-easy4j-review.1",
+          "hashes": {
+            "sha-256": "0aeeed3c2356097a290d6535e8a2b1fa0a28c125508fe07abb32c5721bdd0dbc"
+          }
+        }
+      ],
+      "status": "fixed",
+      "status_notes": "Backport from https://github.com/spring-projects/spring-boot/commit/5ceb1a228932e35cc803d1c1fea68f0f984aaa90 https://github.com/spring-projects/spring-boot/commit/9dc5aa2863f598a15d3dfa116f4b89249daba7e7. Candidate source 6d24dea934dc1e2297301b78b03de5ce5b89b2ff. The Aliyun Maven artifact matched the verified JAR SHA-256 and passed 6 JDK 8 artifact regression tests."
+    },
+    {
+      "vulnerability": {
+        "name": "CVE-2026-41001"
+      },
+      "products": [
+        {
+          "@id": "pkg:maven/org.springframework.boot/spring-boot-autoconfigure@2.7.18-easy4j-review.1",
+          "hashes": {
+            "sha-256": "0e7db6ea00028c1f1d3bac9037c1ba8ed313e444b2bef65b68f54351a71c823d"
+          }
+        }
+      ],
+      "status": "fixed",
+      "status_notes": "Backport from https://github.com/spring-projects/spring-boot/commit/4218bd76e934e5cf9e3fd3997c67b8a6b0d0c111. Candidate source 6d24dea934dc1e2297301b78b03de5ce5b89b2ff. The Aliyun Maven artifact matched the verified JAR SHA-256 and passed 6 JDK 8 artifact regression tests."
+    }
+  ]
+}

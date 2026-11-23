@@ -77,3 +77,9 @@ Spring Framework 从第三方 Apache 2.0 回移树 `16a56ef8631a2203fdf9a3a6aec3
 [复现步骤](issue-10-backport/README.md)保存源码输入、回移补丁和本地 Maven 构建命令。现有制品保存在本地隔离仓库，远端 CI 和下游应用仍需可解析的制品来源。Issue 保持开放。
 
 本地 Maven 制品包包含 20 个模块的 89 个文件及逐文件 SHA-256 清单。ZIP 的 SHA-256 为 `c511cf537a355a93e32a215c5340b5e2cc70c7f16212d5b15df62c8a163cc7d3`。
+
+### 阿里云私库的发布和安全复核
+
+两套候选制品已发布到阿里云私有发布库。20 个 Maven 模块的 89 个文件回读后均与交付包 SHA-256 一致。空 Maven 缓存使用仓库凭据通过 JDK 8 项目构建及两个独立消费用例。父 POM 和 BOM 的匿名访问均返回 HTTP 401。测试分支运行了同一候选源码。[JDK 8 测试分支 CI](https://github.com/easy-4-java/ip2region-spring-boot-starter/actions/runs/45200679670)
+
+[OpenVEX 技术复核](issue-10-backport/boot-review.openvex.json) 只覆盖三个精确回移 JAR 及记录的 SHA-256。CVE-2025-22235 的代码位于 Actuator 自动配置模块，ip2region 的远端构建 SBOM 不含这个模块。原始 OSV 报告仍保留其对 Boot 坐标的版本匹配结果，扫描规则和默认分支保持原状。
